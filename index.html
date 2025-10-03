@@ -422,18 +422,20 @@
         .image-container {
             position: relative;
             width: 100%;
-            height: 250px;
+            height: 250px;      /* mantiene proporción de tarjeta */
             overflow: hidden;
             border-radius: 8px;
+            background: #000;   /* relleno si sobra espacio */
         }
         .image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;   /* << muestra la prenda completa */
             position: absolute;
             top: 0;
             left: 0;
             transition: opacity 0.5s;
+            background: #000;
         }
         .image-container .back {
             opacity: 0;
