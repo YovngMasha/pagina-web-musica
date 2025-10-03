@@ -422,19 +422,22 @@
         .image-container {
             position: relative;
             width: 100%;
-            height: auto;          /* se ajusta a la altura de la imagen */
+            aspect-ratio: 1 / 1;     /* SIEMPRE cuadrado */
             overflow: hidden;
             border-radius: 8px;
-            background: none;      /* sin fondo negro */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #000;        /* marco negro discreto (puedo ponerlo transparente si prefieres) */
         }
         .image-container img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;   /* la camiseta completa */
+            position: absolute;
+            inset: 0;               /* top:0; right:0; bottom:0; left:0 */
+            margin: auto;           /* centra en el cuadro */
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;            /* respeta proporción */
+            height: auto;           /* respeta proporción */
+            object-fit: contain;    /* imagen completa dentro del cuadrado */
             transition: opacity 0.5s;
+            display: block;
         }
         .image-container .back {
             opacity: 0;
