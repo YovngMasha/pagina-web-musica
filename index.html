@@ -407,6 +407,39 @@
                 margin-top: 15px;
             }
         }
+    
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s;
+        }
+        .image-container .back {
+            opacity: 0;
+        }
+        .image-container:hover .front {
+            opacity: 0;
+        }
+        .image-container:hover .back {
+            opacity: 1;
+        }
+    
+
+        /* Support for devices without hover (mobile/tablet): toggle via class */
+        .image-container.no-hover .back { opacity: 0; }
+        .image-container.no-hover.show-back .back { opacity: 1; }
+        .image-container.no-hover.show-back .front { opacity: 0; }
+
     </style>
 </head>
 <body>
@@ -591,16 +624,20 @@
                     <button onclick="addToCart('VDHGUN T-SHIRT', 299.99)">Agregar al carrito</button>
                 </div>
 
-                <!-- Producto de playera "BLESSED" -->
-                <div class="merch-item">
-                    <img src="blessed-shirt.jpg" alt="BLESSED T-SHIRT">
-                    <h3>BLESSED T-SHIRT</h3>
-                    <p>Precio: $349.99 MXN</p>
-                    <button onclick="addToCart('BLESSED T-SHIRT', 349.99)">Agregar al carrito</button>
-                </div>
-            </div>
+                
+<div class="merch-item">
+  <div class="image-container">
+    <img src="blessed-shirt.jpeg" alt="BLESSED T-SHIRT Front" class="front">
+    <img src="blessed-shirt-back.jpeg" alt="BLESSED T-SHIRT Back" class="back">
+  </div>
+  <h3>BLESSED T-SHIRT</h3>
+  <p>Precio: $349.99 MXN</p>
+  <button onclick="addToCart('BLESSED T-SHIRT', 349.99)">Agregar al carrito</button>
+</div>
+
+</div>
         </section>
-        
+
         <section id="contacto">
             <h2>Contacto</h2>
             <p>¿Tienes preguntas, propuestas o quieres colaborar? ¡Contáctanos!</p>
@@ -635,7 +672,7 @@
             <p>Conocido por su oído agudo y su visión artística, Yovng Masha no solo produce música, sino que también fomenta la comunidad a través de la organización de eventos y el apoyo a nuevos talentos. Su sello discográfico GodRecords es un testimonio de su compromiso con el futuro de la música.</p>
             <p>¡Únete a la familia de Yovng Masha y sé parte de la próxima ola de sonido!</p>
         </section>
-        
+
         <section id="redes-sociales">
             <h2>Síguenos en Redes Sociales</h2>
             <!-- Enlaces con logos (iconos) de redes sociales -->
@@ -675,7 +712,34 @@
         <p>© <span id="current-year"></span> Yovng Masha. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AerGLNGHIHIp93TUu0plV6K8jO2q6SitOjisYDPUcB6kjeuqP7bXjnSQloHFkigHa5eoQod7436RStO-&currency=MXN"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AerGLNGHIHIp93TUu0plV6K8jO2q6SitOjisYDPUcB6kjeuqP7bXjnSQloHFkigHa5eoQod7436RStO-&currency=MXN">
+        // Enable image swap on devices without hover
+        document.addEventListener('DOMContentLoaded', () => {
+            const supportsHover = window.matchMedia('(hover: hover)').matches;
+            const containers = document.querySelectorAll('.image-container');
+            if (!supportsHover) {
+                containers.forEach((ic) => {
+                    ic.classList.add('no-hover');
+                    let showingBack = false;
+                    // Auto-rotate every 2.5s
+                    const interval = setInterval(() => {
+                        showingBack = !showingBack;
+                        ic.classList.toggle('show-back', showingBack);
+                    }, 2500);
+                    // Tap to toggle
+                    ic.addEventListener('click', () => {
+                        showingBack = !showingBack;
+                        ic.classList.toggle('show-back', showingBack);
+                    }, { passive: true });
+                    // Optional: stop auto-rotate while interacting
+                    ic.addEventListener('pointerdown', () => {
+                        clearInterval(interval);
+                    }, { passive: true });
+                });
+            }
+        });
+
+    </script>
     <script>
         const cart = []; // Almacena ítems del carrito principal (beats, merch)
         let cartTotal = 0;
@@ -698,7 +762,7 @@
             updateCartDisplay(); // Actualiza la visualización del carrito
 
             // Muestra una alerta simple
-            alert(`"${itemName}" agregado al carrito.`);
+            alert(`\"${itemName}\" agregado al carrito.`);
         }
 
         // Función para eliminar ítems del carrito principal
@@ -723,7 +787,7 @@
             cartItemsList.innerHTML = ''; // Limpia la lista actual
             cart.forEach(item => {
                 const listItem = document.createElement('li');
-                listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} MXN <button onclick="removeFromCart('${item.name}', ${item.price})">X</button>`;
+                listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} MXN <button onclick=\"removeFromCart('${item.name}', ${item.price})\">X</button>`;
                 cartItemsList.appendChild(listItem);
             });
         }
@@ -763,7 +827,7 @@
             producerCartItemsList.innerHTML = '';
             producerCart.forEach(item => {
                 const listItem = document.createElement('li');
-                listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} MXN (Fecha: ${item.date.toLocaleDateString()}) <button onclick="removeFromProducerCart('${item.name}')">X</button>`;
+                listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} MXN (Fecha: ${item.date.toLocaleDateString()}) <button onclick=\"removeFromProducerCart('${item.name}')\">X</button>`;
                 producerCartItemsList.appendChild(listItem);
             });
         }
@@ -976,16 +1040,34 @@
         }
 
         // La función checkoutProducer() ya no es necesaria si reserveDateAndPay() maneja el pago.
-        // Si tienes otros usos para un "checkout" de producción que no sea la reserva inicial,
+        // Si tienes otros usos para un \"checkout\" de producción que no sea la reserva inicial,
         // entonces sí tendría sentido implementarla con su propia lógica de PayPal.
         // Por ahora, la dejamos como un comentario para evitar confusiones.
-        /*
-        function checkoutProducer() {
-            // Esta función podría ser redundante si `prepareProducerPayment` ya activa el flujo de pago.
-            // Si la necesitas para otra cosa, aquí iría la lógica de PayPal para el carrito de producción.
-            alert("Proceso de pago para el carrito de producción (si es diferente a la reserva inicial).");
-        }
-        */
-    </script>
-</body>
-</html>
+        /*\n        function checkoutProducer() {\n            // Esta función podría ser redundante si `prepareProducerPayment` ya activa el flujo de pago.\n            // Si la necesitas para otra cosa, aquí iría la lógica de PayPal para el carrito de producción.\n            alert(\"Proceso de pago para el carrito de producción (si es diferente a la reserva inicial).\");\n        }\n        */\n    
+        // Enable image swap on devices without hover
+        document.addEventListener('DOMContentLoaded', () => {
+            const supportsHover = window.matchMedia('(hover: hover)').matches;
+            const containers = document.querySelectorAll('.image-container');
+            if (!supportsHover) {
+                containers.forEach((ic) => {
+                    ic.classList.add('no-hover');
+                    let showingBack = false;
+                    // Auto-rotate every 2.5s
+                    const interval = setInterval(() => {
+                        showingBack = !showingBack;
+                        ic.classList.toggle('show-back', showingBack);
+                    }, 2500);
+                    // Tap to toggle
+                    ic.addEventListener('click', () => {
+                        showingBack = !showingBack;
+                        ic.classList.toggle('show-back', showingBack);
+                    }, { passive: true });
+                    // Optional: stop auto-rotate while interacting
+                    ic.addEventListener('pointerdown', () => {
+                        clearInterval(interval);
+                    }, { passive: true });
+                });
+            }
+        });
+
+    </script>\n</body>\n</html>\n
