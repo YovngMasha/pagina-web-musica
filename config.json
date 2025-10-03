@@ -1,0 +1,77 @@
+{
+  "brand": "Ecosistema Musical",
+  "email": "contacto@example.com",
+  "phone": "+52 123 456 7890",
+  "location": "Santiago de Querétaro, MX",
+  "socials": {
+    "instagram": "https://instagram.com/tuusuario",
+    "youtube": "https://youtube.com/tuusuario",
+    "tiktok": "https://tiktok.com/@tuusuario",
+    "x": "https://twitter.com/tuusuario"
+  },
+  "beats": [
+    {
+      "title": "Drill Beat",
+      "bpm": 140,
+      "key": "Cm",
+      "price": "$30",
+      "license": "Basic",
+      "file": "assets/audio/drill.mp3"
+    },
+    {
+      "title": "OPO Beat",
+      "bpm": 120,
+      "key": "Am",
+      "price": "$35",
+      "license": "Basic",
+      "file": "assets/audio/OPO.mp3"
+    },
+    {
+      "title": "Taxi Beat",
+      "bpm": 130,
+      "key": "Fm",
+      "price": "$25",
+      "license": "Basic",
+      "file": "assets/audio/TAXIBEAT.mp3"
+    },
+    {
+      "title": "Zaza Beat",
+      "bpm": 150,
+      "key": "Gm",
+      "price": "$40",
+      "license": "Premium",
+      "file": "assets/audio/zaza.mp3"
+    }
+  ],
+  "products": [
+    {
+      "title": "Sudadera Negra",
+      "price": "$45",
+      "img": "assets/images/product.png",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ]
+    },
+    {
+      "title": "Camiseta Blanca",
+      "price": "$25",
+      "img": "assets/images/product.png",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "title": "Gorra Logo",
+      "price": "$20",
+      "img": "assets/images/product.png",
+      "sizes": [
+        "Única"
+      ]
+    }
+  ]
+}
