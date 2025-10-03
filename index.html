@@ -448,6 +448,10 @@
         .image-container:hover .back {
             opacity: 1;
         }
+        /* Estado alternado en móvil */
+        .image-container.is-back .front { opacity: 0; }
+        .image-container.is-back .back  { opacity: 1; }
+
     
 
         /* Support for devices without hover (mobile/tablet): toggle via class */
@@ -712,6 +716,7 @@
         // NO colocar lógica aquí; este script solo carga PayPal
     </script>
     
+    
     <script>
         // Manejo de imágenes frente/atrás
         document.addEventListener('DOMContentLoaded', () => {
@@ -719,30 +724,15 @@
             const containers = document.querySelectorAll('.image-container');
 
             containers.forEach((ic) => {
-                const front = ic.querySelector('.front');
-                const back  = ic.querySelector('.back');
-
-                // Estado inicial
-                if (front) front.style.opacity = '1';
-                if (back)  back.style.opacity  = '0';
-                ic.classList.remove('show-back');
-
                 if (!supportsHover) {
                     // SOLO móviles/tablets
                     let timeoutId = null;
 
                     const showBackThenAutoReturn = () => {
-                        // Mostrar atrás
-                        if (front) front.style.opacity = '0';
-                        if (back)  back.style.opacity  = '1';
-                        ic.classList.add('show-back');
-
-                        // Volver al frente después de 2.5s
+                        ic.classList.add('is-back'); // fuerza estado atrás
                         clearTimeout(timeoutId);
                         timeoutId = setTimeout(() => {
-                            if (front) front.style.opacity = '1';
-                            if (back)  back.style.opacity  = '0';
-                            ic.classList.remove('show-back');
+                            ic.classList.remove('is-back'); // regresa al frente
                         }, 2500);
                     };
 
@@ -752,5 +742,6 @@
             });
         });
     </script>
+
 
 \n</body>\n</html>\n
