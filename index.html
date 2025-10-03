@@ -411,7 +411,7 @@
         .image-container {
     position: relative;
     width: 100%;
-    max-height: 400px;
+    max-height: 500px;
     overflow: hidden;
     border-radius: 8px;
     display: flex;
@@ -419,15 +419,16 @@
     align-items: center;
 }
         .image-container img {
+    max-width: 100%;
+    max-height: 500px;
+    height: auto;
     width: auto;
-    height: 100%;
-    max-height: 400px;
     object-fit: contain;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     transition: opacity 0.5s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
         .image-container .back {
             opacity: 0;
