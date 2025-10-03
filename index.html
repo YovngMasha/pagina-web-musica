@@ -20,7 +20,7 @@
             font-family: 'Urbanist', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--primary-color);
+            background-color: var(--dark-background);
             color: var(--secondary-color);
             line-height: 1.6;
             scroll-behavior: smooth; /* Desplazamiento suave entre secciones */
@@ -436,7 +436,7 @@
             width: auto;            /* respeta proporción */
             height: auto;           /* respeta proporción */
             object-fit: contain;    /* imagen completa dentro del cuadrado */
-            transition: opacity 2s ease;
+            transition: opacity 0.6s ease;
             display: block;
         }
         .image-container .back {
@@ -711,6 +711,7 @@
     <script src="https://www.paypal.com/sdk/js?client-id=AerGLNGHIHIp93TUu0plV6K8jO2q6SitOjisYDPUcB6kjeuqP7bXjnSQloHFkigHa5eoQod7436RStO-&currency=MXN">
         // NO colocar lógica aquí; este script solo carga PayPal
     </script>
+    
     <script>
         // Manejo de imágenes frente/atrás
         document.addEventListener('DOMContentLoaded', () => {
@@ -721,33 +722,35 @@
                 const front = ic.querySelector('.front');
                 const back  = ic.querySelector('.back');
 
-                // Estado inicial: frente visible
+                // Estado inicial
                 if (front) front.style.opacity = '1';
                 if (back)  back.style.opacity  = '0';
-                ic.classList.remove('show-back'); // por si quedó de una versión anterior
-                ic.classList.add('no-hover');     // forzamos control por JS en móvil
+                ic.classList.remove('show-back');
 
-                // En dispositivos sin hover (móvil/tablet), usar tap para alternar
                 if (!supportsHover) {
-                    let showingBack = false;
+                    // SOLO móviles/tablets
+                    let timeoutId = null;
 
-                    const toggle = () => {
-                        showingBack = !showingBack;
-                        if (showingBack) {
-                            if (front) front.style.opacity = '0';
-                            if (back)  back.style.opacity  = '1';
-                            ic.classList.add('show-back');
-                        } else {
+                    const showBackThenAutoReturn = () => {
+                        // Mostrar atrás
+                        if (front) front.style.opacity = '0';
+                        if (back)  back.style.opacity  = '1';
+                        ic.classList.add('show-back');
+
+                        // Volver al frente después de 2.5s
+                        clearTimeout(timeoutId);
+                        timeoutId = setTimeout(() => {
                             if (front) front.style.opacity = '1';
                             if (back)  back.style.opacity  = '0';
                             ic.classList.remove('show-back');
-                        }
+                        }, 2500);
                     };
 
-                    ic.addEventListener('click', toggle, { passive: true });
-                    ic.addEventListener('touchend', toggle, { passive: true });
+                    ic.addEventListener('click', showBackThenAutoReturn, { passive: true });
+                    ic.addEventListener('touchend', showBackThenAutoReturn, { passive: true });
                 }
             });
         });
     </script>
+
 \n</body>\n</html>\n
