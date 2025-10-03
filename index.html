@@ -141,6 +141,16 @@
         }
 
         
+.merch-item img {
+    width: 100%;
+    height: auto;         /* la altura se ajusta sola */
+    object-fit: contain;  /* muestra la playera completa */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: #000; /* relleno negro si sobra espacio */
+}
+
 
         .price {
             font-size: 1.3rem;
@@ -372,6 +382,7 @@
     background-color: #000; /* relleno negro si sobra espacio */
 }
 
+
             #redes-sociales a {
                 font-size: 2rem;
                 margin: 0 10px;
@@ -456,6 +467,7 @@
         #merch .sizes { display: flex; flex-direction: column; gap: 6px; align-items: center; }
         #merch .sizes button { width: 80%; padding: 6px 0; background: none; border: 1px solid var(--highlight-color); color: var(--highlight-color); border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
         #merch .sizes button:hover { background: var(--highlight-color); color: var(--dark-background); }
+        #merch .sizes button.active { background: var(--highlight-color); color: var(--dark-background); border-color: var(--highlight-color); }
 
         /* ===== MERCH ajustes: cuadros más chicos y viewer ===== */
         #merch .merch { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
@@ -534,16 +546,16 @@
                 <option value="Sesión completa">Sesión completa ($999.99 MXN)</option>
             </select>
             <input type="date" id="producer-date" />
-            <button id="reserve-button" onclick="prepareProducerPayment()">Apartar Fecha y Pagar 50%</button>
-            <div id="reservation-message"></div>
-            <div id="paypal-producer-button-container"></div>
+            
+            <button id="producer-addcart-button" onclick="addProducerToCart()" style="margin-left:8px;">Apartar Fecha y Pagar 50%</button><div id="reservation-message"></div>
+            
         </section>
 
         <section id="beats">
             <h2>Beat Shop</h2>
             <p>Explora los beats exclusivos de Yovng Masha. Cada pista está diseñada para inspirar y elevar tu música. Selecciona tu licencia y descarga al instante.</p>
             <div class="beats-container">
-                
+                <!-- Beat F1 -->
                 <div class="beat-card">
                     <h3>F1</h3>
                     <audio id="F1_audio" preload="none" controls>
@@ -574,7 +586,7 @@
                         </div>
                     </details>
                 </div>
-                
+                <!-- Beat DIDIDI -->
                 <div class="beat-card">
                     <h3>DIDIDI</h3>
                     <audio id="DIDIDI_audio" preload="none" controls>
@@ -605,7 +617,7 @@
                         </div>
                     </details>
                 </div>
-                
+                <!-- Beat 768 -->
                 <div class="beat-card">
                     <h3>768</h3>
                     <audio id="768_audio" preload="none" controls>
@@ -645,7 +657,7 @@
             <h2>Merch</h2>
             <p>Lleva el estilo de Yovng Masha contigo. Explora nuestra exclusiva colección de ropa y accesorios.</p>
             <div class="merch">
-                
+                <!-- Playera Blessed -->
                 <div class="merch-item">
                  <div class="image-container">
                    <img src="blessed-shirt-back.jpeg" alt="BLESSED T-SHIRT Back" class="front">
@@ -657,7 +669,7 @@
                   <button onclick="addToCart('BLESSED T-SHIRT', 349.99)">Agregar al carrito</button>
                 </div>
 
-                
+                <!-- Sudadera VDH GUN -->
                 <div class="merch-item">
                   <div class="image-container">
                     <img src="gunvdh-hoodie.jpeg" alt="VDH GUN HOODIE Front" class="front">
@@ -668,7 +680,7 @@
                   <button onclick="addToCart('VDH GUN HOODIE', 599.99)">Agregar al carrito</button>
                 </div>
 
-                
+                <!-- Producto 3 de ejemplo -->
                 <div class="merch-item">
                   <div class="image-container">
                     <img src="producto3-front.jpeg" alt="Producto 3 Front" class="front">
@@ -680,6 +692,8 @@
                 </div>
             </div>
         </section>
+
+
 
         <section id="contacto">
             <h2>Contacto</h2>
@@ -698,7 +712,7 @@
                 </p>
                 <button type="submit">Enviar Mensaje</button>
             </form>
-            
+            <!-- Datos de contacto actualizados -->
             <p style="margin-top: 20px;">
                 📍 Santiago de Querétaro, MX<br>
                 Escríbenos a:
@@ -718,17 +732,17 @@
 
         <section id="redes-sociales">
             <h2>Síguenos en Redes Sociales</h2>
-            
+            <!-- Enlaces con logos (iconos) de redes sociales -->
             <div class="social-links" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-                
+                <!-- Instagram cuentas -->
                 <a href="https://www.instagram.com/yovngmasha?igsh=MXc1YTJtc20wM2pxMg%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram Yovng Masha"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="https://www.instagram.com/godrecordz?igsh=YnMzaHhnOWxwb3F1" target="_blank" rel="noopener" aria-label="Instagram God Récords"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="https://www.instagram.com/vdhclvb?igsh=MXQxajFiejVwYnF2ZA==" target="_blank" rel="noopener" aria-label="Instagram VDH"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="https://www.instagram.com/stylazy_?igsh=MWNwZGRsaHlyeXdheQ==" target="_blank" rel="noopener" aria-label="Instagram STYLAZY"><i class="fab fa-instagram fa-lg"></i></a>
-                
+                <!-- YouTube canales -->
                 <a href="https://youtube.com/@yovngmasha?si=gRw3ffOgmt4m8u4z" target="_blank" rel="noopener" aria-label="YouTube Yovng Masha"><i class="fab fa-youtube fa-lg"></i></a>
                 <a href="https://www.youtube.com/@vdhclvb" target="_blank" rel="noopener" aria-label="YouTube God Récords"><i class="fab fa-youtube fa-lg"></i></a>
-                
+                <!-- Spotify perfiles -->
                 <a href="https://open.spotify.com/intl-es/artist/6nWmpNQeQJ73sXtg3MoFg6?si=o8ll-1imQG-kajN2_U1dRAy" target="_blank" rel="noopener" aria-label="Spotify Yovng Masha"><i class="fab fa-spotify fa-lg"></i></a>
                 <a href="https://open.spotify.com/intl-es/artist/5UsfWGHERWLkwDmDGE7pJ9?si=N2laEDlMTuSh7GbN_ZC7HA" target="_blank" rel="noopener" aria-label="Spotify VDH"><i class="fab fa-spotify fa-lg"></i></a>
             </div>
@@ -755,7 +769,8 @@
         <p>© <span id="current-year"></span> Yovng Masha. Todos los derechos reservados.</p>
     </footer>
 
-    
+
+    <!-- Viewer de imágenes merch -->
     <div id="viewer" aria-hidden="true">
         <div class="viewer-backdrop"></div>
         <div class="viewer-box">
@@ -764,6 +779,7 @@
             <div class="close-hint">Toca/clic fuera para cerrar • Esc para salir</div>
         </div>
     </div>
+
 
     
     <script src="https://www.paypal.com/sdk/js?client-id=AerGLNGHIHIp93TUu0plV6K8jO2q6SitOjisYDPUcB6kjeuqP7bXjnSQloHFkigHa5eoQod7436RStO-&currency=MXN">
@@ -797,6 +813,8 @@
         });
     </script>
 
+
+\n
     <script>
         // Visor de merch: abrir con clic, cerrar clic fuera o Esc
         document.addEventListener('DOMContentLoaded', () => {
@@ -843,4 +861,130 @@
         });
     </script>
 
-</body></html>
+</body>\n</html>\n
+
+<script>
+(function(){
+  // State
+  var CART_STATE = { items: [] };
+
+  // Elements
+  function el(id){ return document.getElementById(id); }
+  function fmt(n){ return (Number(n)||0).toFixed(2); }
+
+  // Public API
+  window.addToCart = function(name, price){
+    CART_STATE.items.push({ name: String(name||'Producto'), price: Number(price)||0 });
+    renderCart();
+    var cart = el('cart');
+    if (cart){ cart.style.display = 'block'; }
+  };
+  window.removeFromCart = function(i){
+    CART_STATE.items.splice(i,1);
+    renderCart();
+  };
+  window.toggleCart = function(){
+    var cart = el('cart');
+    if (!cart) return;
+    cart.style.display = (cart.style.display === 'block') ? 'none' : 'block';
+  };
+  window.checkout = function(){
+    var cart = el('cart');
+    if (!cart) return;
+    renderCart();
+    cart.style.display = 'block';
+    var cont = el('paypal-main-cart-button-container');
+    if (cont){ cont.scrollIntoView({behavior:'smooth'}); }
+  };
+
+  // Render
+  function renderCart(){
+    var itemsEl = el('cart-items');
+    var totalEl = el('cart-total');
+    var countEl = el('cart-count');
+    if (!itemsEl || !totalEl || !countEl) return;
+
+    itemsEl.innerHTML = '';
+    var total = 0;
+    CART_STATE.items.forEach(function(it, idx){
+      total += it.price;
+      var li = document.createElement('li');
+      li.innerHTML = '<span>' + it.name + '</span>' +
+                     '<span>$' + fmt(it.price) + ' ' +
+                     '<button onclick="removeFromCart(' + idx + ')">Quitar</button></span>';
+      itemsEl.appendChild(li);
+    });
+    totalEl.textContent = fmt(total);
+    countEl.textContent = String(CART_STATE.items.length);
+
+    // PayPal render
+    var paypalContainer = el('paypal-main-cart-button-container');
+    if (paypalContainer){
+      paypalContainer.innerHTML = '';
+      if (typeof paypal !== 'undefined' && total > 0){
+        try{
+          paypal.Buttons({
+            createOrder: function(data, actions){
+              return actions.order.create({
+                purchase_units: [{
+                  amount: { currency_code: 'MXN', value: fmt(total) }
+                }]
+              });
+            },
+            onApprove: function(data, actions){
+              return actions.order.capture().then(function(){
+                alert('Gracias por tu compra.');
+                CART_STATE.items = [];
+                renderCart();
+              });
+            }
+          }).render(paypalContainer);
+        }catch(e){ console.error(e); }
+      }
+    }
+  }
+
+  // Footer year
+  document.addEventListener('DOMContentLoaded', function(){
+    var y = el('current-year');
+    if (y){ y.textContent = String(new Date().getFullYear()); }
+  });
+})();
+
+// Simple downloader for beats
+function downloadBeat(file){
+  try{
+    var a = document.createElement('a');
+    a.href = file;
+    a.download = file.split('/').pop();
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }catch(e){ console.error(e); }
+}
+</script>
+
+<script>
+function addProducerToCart(){
+  try{
+    var sel = document.getElementById('producer-select');
+    var date = document.getElementById('producer-date');
+    if (!sel){ alert('No se encontró el selector de servicio.'); return; }
+    // Obtener texto visible del option seleccionado (incluye precio)
+    var optText = sel.options[sel.selectedIndex].text || '';
+    var m = optText.match(/\$(\d+(?:\.\d+)?)/);
+    var full = m ? Number(m[1]) : 0;
+    var deposit = Number((full * 0.5).toFixed(2));
+    var d = (date && date.value) ? date.value : 'fecha por definir';
+    var name = 'Producción: ' + optText + ' - ' + d + ' (Depósito 50%)';
+    if (typeof addToCart === 'function'){
+      addToCart(name, deposit);
+    } else {
+      alert('No se encontró el carrito.');
+    }
+  }catch(e){
+    console.error(e);
+    alert('Ocurrió un error al agregar al carrito.');
+  }
+}
+</script>
