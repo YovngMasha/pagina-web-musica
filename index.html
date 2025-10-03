@@ -179,6 +179,30 @@
             transform: translateY(0);
         }
 
+        /* Estilos para las licencias de beats */
+        .license-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .license-box {
+            border: 2px solid var(--highlight-color);
+            border-radius: 8px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--light-text);
+        }
+        .license-box h4 {
+            font-family: 'Permanent Marker', cursive;
+            color: var(--highlight-color);
+            margin-bottom: 5px;
+        }
+        .license-box p {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
         /* Estilos específicos para la sección de Producción */
         #producer select, #producer input[type="date"] {
             padding: 10px;
@@ -460,11 +484,23 @@
                     <button onclick="downloadBeat('F1.mp3')" id="download-F1_beat" style="display: none;">Descargar Beat</button>
                     <details class="license-details">
                         <summary style="cursor:pointer;color:var(--highlight-color);">Ver licencias</summary>
-                        <ul style="list-style: disc; padding-left: 20px; text-align:left;">
-                            <li><strong>MP3 Lease (250k Máx – $300.00)</strong>: Usada para grabación musical, hasta 2 000 copias, 250 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                            <li><strong>WAV Lease (500k Máx – $500.00)</strong>: Usada para grabación musical, hasta 3 000 copias, 500 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                            <li><strong>Premium (1 M Máx – $800.00)</strong>: Usada para grabación musical, hasta 10 000 copias, 1 000 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                        </ul>
+                        <div class="license-container">
+                            <div class="license-box">
+                                <h4>MP3 Lease (250k Máx – $300.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 2 000 copias, 250 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('F1 MP3 Lease', 300.00)">Agregar al carrito</button>
+                            </div>
+                            <div class="license-box">
+                                <h4>WAV Lease (500k Máx – $500.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 3 000 copias, 500 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('F1 WAV Lease', 500.00)">Agregar al carrito</button>
+                            </div>
+                            <div class="license-box">
+                                <h4>Premium (1 M Máx – $800.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 10 000 copias, 1 000 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('F1 Premium', 800.00)">Agregar al carrito</button>
+                            </div>
+                        </div>
                     </details>
                 </div>
                 <!-- Beat DIDIDI -->
@@ -479,11 +515,23 @@
                     <button onclick="downloadBeat('DIDIDI.mp3')" id="download-DIDIDI_beat" style="display: none;">Descargar Beat</button>
                     <details class="license-details">
                         <summary style="cursor:pointer;color:var(--highlight-color);">Ver licencias</summary>
-                        <ul style="list-style: disc; padding-left: 20px; text-align:left;">
-                            <li><strong>MP3 Lease (250k Máx – $300.00)</strong>: Usada para grabación musical, hasta 2 000 copias, 250 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                            <li><strong>WAV Lease (500k Máx – $500.00)</strong>: Usada para grabación musical, hasta 3 000 copias, 500 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                            <li><strong>Premium (1 M Máx – $800.00)</strong>: Usada para grabación musical, hasta 10 000 copias, 1 000 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                        </ul>
+                        <div class="license-container">
+                            <div class="license-box">
+                                <h4>MP3 Lease (250k Máx – $300.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 2 000 copias, 250 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('DIDIDI MP3 Lease', 300.00)">Agregar al carrito</button>
+                            </div>
+                            <div class="license-box">
+                                <h4>WAV Lease (500k Máx – $500.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 3 000 copias, 500 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('DIDIDI WAV Lease', 500.00)">Agregar al carrito</button>
+                            </div>
+                            <div class="license-box">
+                                <h4>Premium (1 M Máx – $800.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 10 000 copias, 1 000 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('DIDIDI Premium', 800.00)">Agregar al carrito</button>
+                            </div>
+                        </div>
                     </details>
                 </div>
                 <!-- Beat 768 -->
@@ -498,11 +546,23 @@
                     <button onclick="downloadBeat('768.mp3')" id="download-768_beat" style="display: none;">Descargar Beat</button>
                     <details class="license-details">
                         <summary style="cursor:pointer;color:var(--highlight-color);">Ver licencias</summary>
-                        <ul style="list-style: disc; padding-left: 20px; text-align:left;">
-                            <li><strong>MP3 Lease (250k Máx – $300.00)</strong>: Usada para grabación musical, hasta 2 000 copias, 250 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                            <li><strong>WAV Lease (500k Máx – $500.00)</strong>: Usada para grabación musical, hasta 3 000 copias, 500 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                            <li><strong>Premium (1 M Máx – $800.00)</strong>: Usada para grabación musical, hasta 10 000 copias, 1 000 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</li>
-                        </ul>
+                        <div class="license-container">
+                            <div class="license-box">
+                                <h4>MP3 Lease (250k Máx – $300.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 2 000 copias, 250 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('768 MP3 Lease', 300.00)">Agregar al carrito</button>
+                            </div>
+                            <div class="license-box">
+                                <h4>WAV Lease (500k Máx – $500.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 3 000 copias, 500 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('768 WAV Lease', 500.00)">Agregar al carrito</button>
+                            </div>
+                            <div class="license-box">
+                                <h4>Premium (1 M Máx – $800.00)</h4>
+                                <p>Usada para grabación musical, distribuye hasta 10 000 copias, 1 000 000 reproducciones online, 1 video musical, presentaciones en vivo y 2 estaciones de radio.</p>
+                                <button onclick="addToCart('768 Premium', 800.00)">Agregar al carrito</button>
+                            </div>
+                        </div>
                     </details>
                 </div>
             </div>
