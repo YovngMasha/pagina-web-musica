@@ -141,16 +141,6 @@
         }
 
         
-.merch-item img {
-    width: 100%;
-    height: auto;         /* la altura se ajusta sola */
-    object-fit: contain;  /* muestra la playera completa */
-    border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: #000; /* relleno negro si sobra espacio */
-}
-
 
         .price {
             font-size: 1.3rem;
@@ -382,7 +372,6 @@
     background-color: #000; /* relleno negro si sobra espacio */
 }
 
-
             #redes-sociales a {
                 font-size: 2rem;
                 margin: 0 10px;
@@ -554,7 +543,7 @@
             <h2>Beat Shop</h2>
             <p>Explora los beats exclusivos de Yovng Masha. Cada pista está diseñada para inspirar y elevar tu música. Selecciona tu licencia y descarga al instante.</p>
             <div class="beats-container">
-                <!-- Beat F1 -->
+                
                 <div class="beat-card">
                     <h3>F1</h3>
                     <audio id="F1_audio" preload="none" controls>
@@ -585,7 +574,7 @@
                         </div>
                     </details>
                 </div>
-                <!-- Beat DIDIDI -->
+                
                 <div class="beat-card">
                     <h3>DIDIDI</h3>
                     <audio id="DIDIDI_audio" preload="none" controls>
@@ -616,7 +605,7 @@
                         </div>
                     </details>
                 </div>
-                <!-- Beat 768 -->
+                
                 <div class="beat-card">
                     <h3>768</h3>
                     <audio id="768_audio" preload="none" controls>
@@ -656,7 +645,7 @@
             <h2>Merch</h2>
             <p>Lleva el estilo de Yovng Masha contigo. Explora nuestra exclusiva colección de ropa y accesorios.</p>
             <div class="merch">
-                <!-- Playera Blessed -->
+                
                 <div class="merch-item">
                  <div class="image-container">
                    <img src="blessed-shirt-back.jpeg" alt="BLESSED T-SHIRT Back" class="front">
@@ -668,7 +657,7 @@
                   <button onclick="addToCart('BLESSED T-SHIRT', 349.99)">Agregar al carrito</button>
                 </div>
 
-                <!-- Sudadera VDH GUN -->
+                
                 <div class="merch-item">
                   <div class="image-container">
                     <img src="gunvdh-hoodie.jpeg" alt="VDH GUN HOODIE Front" class="front">
@@ -679,7 +668,7 @@
                   <button onclick="addToCart('VDH GUN HOODIE', 599.99)">Agregar al carrito</button>
                 </div>
 
-                <!-- Producto 3 de ejemplo -->
+                
                 <div class="merch-item">
                   <div class="image-container">
                     <img src="producto3-front.jpeg" alt="Producto 3 Front" class="front">
@@ -691,8 +680,6 @@
                 </div>
             </div>
         </section>
-
-
 
         <section id="contacto">
             <h2>Contacto</h2>
@@ -711,7 +698,7 @@
                 </p>
                 <button type="submit">Enviar Mensaje</button>
             </form>
-            <!-- Datos de contacto actualizados -->
+            
             <p style="margin-top: 20px;">
                 📍 Santiago de Querétaro, MX<br>
                 Escríbenos a:
@@ -731,17 +718,17 @@
 
         <section id="redes-sociales">
             <h2>Síguenos en Redes Sociales</h2>
-            <!-- Enlaces con logos (iconos) de redes sociales -->
+            
             <div class="social-links" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-                <!-- Instagram cuentas -->
+                
                 <a href="https://www.instagram.com/yovngmasha?igsh=MXc1YTJtc20wM2pxMg%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram Yovng Masha"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="https://www.instagram.com/godrecordz?igsh=YnMzaHhnOWxwb3F1" target="_blank" rel="noopener" aria-label="Instagram God Récords"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="https://www.instagram.com/vdhclvb?igsh=MXQxajFiejVwYnF2ZA==" target="_blank" rel="noopener" aria-label="Instagram VDH"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="https://www.instagram.com/stylazy_?igsh=MWNwZGRsaHlyeXdheQ==" target="_blank" rel="noopener" aria-label="Instagram STYLAZY"><i class="fab fa-instagram fa-lg"></i></a>
-                <!-- YouTube canales -->
+                
                 <a href="https://youtube.com/@yovngmasha?si=gRw3ffOgmt4m8u4z" target="_blank" rel="noopener" aria-label="YouTube Yovng Masha"><i class="fab fa-youtube fa-lg"></i></a>
                 <a href="https://www.youtube.com/@vdhclvb" target="_blank" rel="noopener" aria-label="YouTube God Récords"><i class="fab fa-youtube fa-lg"></i></a>
-                <!-- Spotify perfiles -->
+                
                 <a href="https://open.spotify.com/intl-es/artist/6nWmpNQeQJ73sXtg3MoFg6?si=o8ll-1imQG-kajN2_U1dRAy" target="_blank" rel="noopener" aria-label="Spotify Yovng Masha"><i class="fab fa-spotify fa-lg"></i></a>
                 <a href="https://open.spotify.com/intl-es/artist/5UsfWGHERWLkwDmDGE7pJ9?si=N2laEDlMTuSh7GbN_ZC7HA" target="_blank" rel="noopener" aria-label="Spotify VDH"><i class="fab fa-spotify fa-lg"></i></a>
             </div>
@@ -768,8 +755,7 @@
         <p>© <span id="current-year"></span> Yovng Masha. Todos los derechos reservados.</p>
     </footer>
 
-
-    <!-- Viewer de imágenes merch -->
+    
     <div id="viewer" aria-hidden="true">
         <div class="viewer-backdrop"></div>
         <div class="viewer-box">
@@ -778,7 +764,6 @@
             <div class="close-hint">Toca/clic fuera para cerrar • Esc para salir</div>
         </div>
     </div>
-
 
     
     <script src="https://www.paypal.com/sdk/js?client-id=AerGLNGHIHIp93TUu0plV6K8jO2q6SitOjisYDPUcB6kjeuqP7bXjnSQloHFkigHa5eoQod7436RStO-&currency=MXN">
@@ -812,8 +797,6 @@
         });
     </script>
 
-
-\n
     <script>
         // Visor de merch: abrir con clic, cerrar clic fuera o Esc
         document.addEventListener('DOMContentLoaded', () => {
@@ -860,4 +843,4 @@
         });
     </script>
 
-</body>\n</html>\n
+</body></html>
