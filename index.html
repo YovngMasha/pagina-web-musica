@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Servicios de Yovng Masha, artista y productor musical. Beats, producción musical, eventos y diseño.">
+    <meta name="keywords" content="Yovng Masha, servicios musicales, beats, productor, organizador de eventos, mezcla, masterización, diseño gráfico musical, sello discográfico">
+    <title>Yovng Masha | Artista y Productor Musical</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #800080; /* Morado fuerte */
+            --secondary-color: #d7bde2; /* Morado claro para texto */
+            --highlight-color: #ff69B4; /* Rosa brillante para hover */
+            --dark-background: #1a001a; /* Morado muy oscuro para contrastar */
+            --light-text: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Urbanist', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Desplazamiento suave entre secciones */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: var(--dark-background);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Permite que los enlaces se envuelvan en pantallas pequeñas */
+            gap: 15px; /* Espacio entre los enlaces */
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        nav a:hover {
+            background-color: var(--highlight-color);
+            color: var(--dark-background);
+        }
+
+        /* Logo y Título Principal */
+        .logo {
+            width: 150px;
+            height: auto;
+            margin: 2rem auto 1rem;
+            display: block;
+            border-radius: 50%; /* Si tu logo es circular */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 3.5rem;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px var(--highlight-color);
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Secciones Generales */
+        section {
+            background-color: rgba(0, 0, 0, 0.3); /* Un poco de transparencia */
+            margin: 3rem 0;
+            padding: 3rem 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.5rem;
+            color: var(--highlight-color);
+            margin-bottom: 2rem;
+        }
+
+        /* Estilos para ítems de Servicios, Beats y Merch (usando Grid) */
+        .services, .beats-container, .merch {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo con min y max */
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .service-item, .beat-card, .merch-item {
+            background-color: rgba(255, 255, 255, 0.08); /* Fondo más sutil */
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-item:hover, .beat-card:hover, .merch-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px var(--highlight-color);
+        }
+
+        .service-item h3, .beat-card h3, .merch-item h3 {
+            color: var(--light-text);
+            font-size: 1.8rem;
+            margin-top: 0;
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .service-item p, .beat-card p, .merch-item p {
+            font-size: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .beat-card audio {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .merch-item img {
+            width: 100%;
+            height: 250px; /* Altura fija para consistencia */
+            object-fit: cover; /* Asegura que la imagen cubra el área */
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .price {
+            font-size: 1.3rem;
+            color: var(--highlight-color);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Botones */
+        button {
+            background-color: var(--highlight-color);
+            color: var(--dark-background);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            font-weight: bold;
+            margin-top: 10px; /* Espacio extra para botones */
+        }
+
+        button:hover {
+            background-color: #ff8cdd; /* Tono más claro al pasar el ratón */
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Estilos específicos para la sección de Producción */
+        #producer select, #producer input[type="date"] {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--secondary-color);
+            background-color: var(--dark-background);
+            color: var(--light-text);
+            font-family: 'Urbanist', sans-serif;
+            font-size: 1rem;
+        }
+
+        #producer input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1); /* Hace que el icono del calendario sea blanco */
+        }
+
+        #reservation-message {
+            margin-top: 20px;
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+
+        /* Redes Sociales */
+        #redes-sociales {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+        }
+
+        #redes-sociales a {
+            margin: 0 15px;
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 2.5rem; /* Iconos más grandes */
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        #redes-sociales a:hover {
+            color: var(--highlight-color);
+            transform: scale(1.1);
+        }
+
+        /* Carritos (general y de producción) */
+        #cart, #producer-cart {
+            display: none; /* Se ocultan por defecto */
+            background: rgba(0, 0, 0, 0.9); /* Fondo oscuro semitransparente */
+            padding: 30px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            border: 2px solid var(--highlight-color);
+            color: var(--light-text);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #cart h3, #producer-cart h3 {
+            color: var(--highlight-color);
+            margin-top: 0;
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        #cart ul, #producer-cart ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            max-height: 200px; /* Limitar altura para la lista de ítems */
+            overflow-y: auto; /* Scroll si hay muchos ítems */
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        #cart li, #producer-cart li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+            font-size: 1.1rem;
+        }
+
+        #cart li:last-child, #producer-cart li:last-child {
+            border-bottom: none;
+        }
+
+        #cart li button, #producer-cart li button {
+            background: none;
+            border: 1px solid var(--highlight-color);
+            color: var(--highlight-color);
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.2s, color 0.2s;
+            margin-left: 10px;
+        }
+
+        #cart li button:hover, #producer-cart li button:hover {
+            background-color: var(--highlight-color);
+            color: var(--dark-background);
+        }
+
+        #cart p, #producer-cart p {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--light-text);
+            margin-top: 20px;
+        }
+
+        #cart button:last-of-type, #producer-cart button:last-of-type {
+            margin-top: 15px;
+            background-color: var(--dark-background);
+            color: var(--light-text);
+            border: 1px solid var(--secondary-color);
+        }
+
+        #cart button:last-of-type:hover, #producer-cart button:last-of-type:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-background);
+        }
+
+        /* PayPal button container */
+        #paypal-producer-button-container {
+            display: none; /* Oculto por defecto, se muestra con JS */
+            margin-top: 20px;
+            min-height: 50px; /* Para asegurar que tenga espacio */
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-background);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .service-item, .beat-card, .merch-item {
+                padding: 20px;
+            }
+
+            .merch-item img {
+                height: 200px;
+            }
+
+            #redes-sociales a {
+                font-size: 2rem;
+                margin: 0 10px;
+            }
+
+            #cart, #producer-cart {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav a {
+                width: calc(100% - 20px); /* Ocupa casi todo el ancho */
+                text-align: center;
+            }
+            #producer select, #producer input[type="date"] {
+                width: calc(100% - 20px);
+                margin: 5px 0;
+            }
+            button {
+                width: 100%;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#merch">Merch</a>
+        <a href="#beats">Beats</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#about">Acerca de</a>
+        <a href="#" id="cart-link" onclick="toggleCart()">Carrito (<span id="cart-count">0</span>)</a>
+    </nav>
+
+    <div class="container">
+        <img src="logoM.png" alt="Logo de Yovng Masha" class="logo">
+        <h1>Yovng Masha</h1>
+        <p>What's up THIS IS THE ONE OF THE M.</p>
+
+        <section id="servicios">
+            <h2>WHAT ARE YOU DOING?</h2>
+            <div class="services">
+                <div class="service-item">
+                    <h3>Beatmaker</h3>
+                    <p>Produzco beats únicos para artistas de todos los géneros, con sonidos frescos y originales.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Producer</h3>
+                    <p>Ofrezco servicios de producción musical completa: mezcla, masterización y grabación de voces en estudio profesional.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Events Manager</h3>
+                    <p>Organizo eventos y showcases donde artistas y DJ's emergentes pueden darse a conocer y mostrar su talento.</p>
+                </div>
+                <div class="service-item">
+                    <h3>YovngMasha</h3>
+                    <p>Colaboraciones artísticas, producción de canciones originales y proyectos que trascienden géneros.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Designer</h3>
+                    <p>Diseño portadas musicales impactantes, videos promocionales dinámicos y logotipos personalizados para artistas.</p>
+                </div>
+                <div class="service-item">
+                    <h3>GodRecords</h3>
+                    <p>Sello discográfico independiente dedicado a impulsar nuevas voces y sonidos en la escena musical.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="producer">
+            <h2>Servicios de Producción</h2>
+            <p>Agenda tu sesión o servicio con antelación y paga solo el 50% para apartar tu fecha.</p>
+            <select id="producer-select">
+                <option value="Mezcla & Masterización">Mezcla & Masterización ($399.99 MXN)</option>
+                <option value="Mezcla, Masterización & Grabación de voces">Mezcla, Masterización & Grabación de voces ($599.99 MXN)</option>
+                <option value="Sesión completa">Sesión completa ($999.99 MXN)</option>
+            </select>
+            <input type="date" id="producer-date" />
+            <button id="reserve-button" onclick="prepareProducerPayment()">Apartar Fecha y Pagar 50%</button>
+            <div id="reservation-message"></div>
+            <div id="paypal-producer-button-container"></div>
+        </section>
+
+        <section id="beats">
+            <h2>Beat Shop</h2>
+            <p>Beats únicos, ideales para artistas de todos los géneros. Cada beat está diseñado para inspirar y elevar tu música. ¡Adquiere tu licencia hoy!</p>
+            <div class="beats-container">
+                <div class="beat-card">
+                    <h3>DIDIDI</h3>
+                    <audio id="DIDIDI_audio" preload="none" controls>
+                        <source src="./OPO.wav" type="audio/wav">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <p class="price">Precio: $499.99 MXN</p>
+                    <button onclick="addToCart('DIDIDI Beat', 499.99)">Agregar al carrito</button>
+                    <button onclick="downloadBeat('OPO.wav')" id="download-DIDIDI_beat" style="display: none;">Descargar Beat</button>
+                </div>
+                <div class="beat-card">
+                    <h3>Ramon</h3>
+                    <audio id="Ramon_audio" preload="none" controls>
+                        <source src="./zaza.wav" type="audio/wav">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <p class="price">Precio: $299.99 MXN</p>
+                    <button onclick="addToCart('Ramon Beat', 299.99)">Agregar al carrito</button>
+                    <button onclick="downloadBeat('zaza.wav')" id="download-Ramon_beat" style="display: none;">Descargar Beat</button>
+                </div>
+                <div class="beat-card">
+                    <h3>FANTA</h3>
+                    <audio id="Fanta_audio" preload="none" controls>
+                        <source src="./FANTA.wav" type="audio/wav">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <p class="price">Precio: $799.99 MXN</p>
+                    <button onclick="addToCart('FANTA Beat', 799.99)">Agregar al carrito</button>
+                    <button onclick="downloadBeat('FANTA.wav')" id="download-FANTA_beat" style="display: none;">Descargar Beat</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="merch">
+            <h2>Merch</h2>
+            <p>Lleva el estilo de Yovng Masha contigo. Explora nuestra exclusiva colección de ropa y accesorios.</p>
+            <div class="merch">
+                <div class="merch-item">
+                    <img src="playeramasha.jpg" alt="YMGUN T-SHIRT">
+                    <h3>YMGUN T-SHIRT</h3>
+                    <p>Precio: $299.99 MXN</p>
+                    <button onclick="addToCart('YMGUN T-SHIRT', 299.99)">Agregar al carrito</button>
+                </div>
+                <div class="merch-item">
+                    <img src="sudaderamasha.jpg" alt="YMGUN HOODIE">
+                    <h3>YMGUN HOODIE</h3>
+                    <p>Precio: $449.99 MXN</p>
+                    <button onclick="addToCart('YMGUN HOODIE', 449.99)">Agregar al carrito</button>
+                </div>
+                <div class="merch-item">
+                    <img src="vdhplayera.jpg" alt="VDHGUN T-SHIRT">
+                    <h3>VDHGUN T-SHIRT</h3>
+                    <p>Precio: $299.99 MXN</p>
+                    <button onclick="addToCart('VDHGUN T-SHIRT', 299.99)">Agregar al carrito</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>¿Tienes preguntas, propuestas o quieres colaborar? ¡Contáctanos!</p>
+            <form action="https://formspree.io/f/tu-id-de-formspree" method="POST"> <p>
+                    <label for="nombre">Nombre:</label><br>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </p>
+                <p>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" required placeholder="tu.email@ejemplo.com">
+                </p>
+                <p>
+                    <label for="mensaje">Mensaje:</label><br>
+                    <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                </p>
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+            <p style="margin-top: 20px;">También puedes enviarnos un email directo a: <a href="mailto:tuemail@ejemplo.com" style="color: var(--highlight-color); text-decoration: none;">tuemail@ejemplo.com</a></p>
+        </section>
+
+        <section id="about">
+            <h2>Acerca de Yovng Masha</h2>
+            <p>Yovng Masha es un artista y productor musical versátil, con una pasión inquebrantable por la creación sonora y la innovación. Desde sus inicios, ha trabajado incansablemente para fusionar géneros, creando beats distintivos y producciones que capturan la esencia de cada artista con el que colabora.</p>
+            <p>Conocido por su oído agudo y su visión artística, Yovng Masha no solo produce música, sino que también fomenta la comunidad a través de la organización de eventos y el apoyo a nuevos talentos. Su sello discográfico GodRecords es un testimonio de su compromiso con el futuro de la música.</p>
+            <p>¡Únete a la familia de Yovng Masha y sé parte de la próxima ola de sonido!</p>
+        </section>
+        
+        <section id="redes-sociales">
+            <h2>Síguenos en Redes Sociales</h2>
+            <div>
+                <a href="https://www.instagram.com/yovngmasha" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://open.spotify.com/artist/tu_perfil_de_spotify" target="_blank" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="https://twitter.com/yovngmasha" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.youtube.com/channel/tu_canal_de_youtube" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@yovngmasha" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </section>
+    </div>
+
+    <div id="cart">
+        <h3>Tu Carrito</h3>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="cart-total">0.00</span> MXN</p>
+        <button onclick="checkout()">Proceder al pago</button>
+        <button onclick="toggleCart()">Cerrar</button>
+        <div id="paypal-main-cart-button-container" style="margin-top: 15px;"></div>
+    </div>
+
+    <div id="producer-cart">
+        <h3>Carrito de Producción</h3>
+        <ul id="producer-cart-items"></ul>
+        <p>Total a Pagar (Depósito): $<span id="producer-cart-total">0.00</span> MXN</p>
+        <button onclick="toggleProducerCart()">Cerrar</button>
+    </div>
+
+    <footer>
+        <p>© <span id="current-year"></span> Yovng Masha. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AerGLNGHIHIp93TUu0plV6K8jO2q6SitOjisYDPUcB6kjeuqP7bXjnSQloHFkigHa5eoQod7436RStO-&currency=MXN"></script>
+    <script>
+        const cart = []; // Almacena ítems del carrito principal (beats, merch)
+        let cartTotal = 0;
+        const producerCart = []; // Almacena ítems del carrito de producción (servicios)
+        let producerCartTotal = 0;
+        let producerPaypalButtonsRendered = false; // Bandera para PayPal de producción
+        let mainCartPaypalButtonsRendered = false; // Bandera para PayPal del carrito principal
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Actualizar el año en el footer automáticamente
+            document.getElementById('current-year').innerText = new Date().getFullYear();
+        });
+
+        // Función para añadir ítems al carrito principal (beats y merch)
+        function addToCart(itemName, itemPrice) {
+            cart.push({ name: itemName, price: itemPrice });
+            cartTotal += itemPrice;
+            document.getElementById('cart-count').innerText = cart.length;
+            document.getElementById('cart-total').innerText = cartTotal.toFixed(2);
+            updateCartDisplay(); // Actualiza la visualización del carrito
+
+            // Muestra una alerta simple
+            alert(`"${itemName}" agregado al carrito.`);
+        }
+
+        // Función para eliminar ítems del carrito principal
+        function removeFromCart(itemName, itemPrice) {
+            const itemIndex = cart.findIndex(item => item.name === itemName && item.price === itemPrice);
+            if (itemIndex > -1) {
+                cartTotal -= itemPrice;
+                cart.splice(itemIndex, 1);
+                document.getElementById('cart-count').innerText = cart.length;
+                document.getElementById('cart-total').innerText = cartTotal.toFixed(2);
+                updateCartDisplay(); // Refresca la visualización del carrito
+                // Si el carrito queda vacío y el botón de PayPal está visible, lo oculta
+                if (cart.length === 0 && document.getElementById('paypal-main-cart-button-container').style.display === 'block') {
+                    document.getElementById('paypal-main-cart-button-container').style.display = 'none';
+                }
+            }
+        }
+
+        // Función para actualizar la visualización del carrito principal
+        function updateCartDisplay() {
+            const cartItemsList = document.getElementById('cart-items');
+            cartItemsList.innerHTML = ''; // Limpia la lista actual
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} MXN <button onclick="removeFromCart('${item.name}', ${item.price})">X</button>`;
+                cartItemsList.appendChild(listItem);
+            });
+        }
+
+        // Función para añadir servicios al carrito de producción
+        function addToProducerCart(itemName, itemPrice, selectedDate) {
+            // Limpiamos el carrito de producción antes de añadir un nuevo servicio
+            // porque generalmente solo se reserva un servicio a la vez.
+            producerCart.length = 0;
+            producerCartTotal = 0;
+
+            producerCart.push({ name: itemName, price: itemPrice, date: selectedDate });
+            producerCartTotal += itemPrice;
+            document.getElementById('producer-cart-total').innerText = producerCartTotal.toFixed(2);
+            updateProducerCartDisplay(); // Actualiza la visualización del carrito de producción
+        }
+
+        // Función para eliminar ítems del carrito de producción (aunque se espera que solo haya uno)
+        function removeFromProducerCart(itemName) {
+            const itemIndex = producerCart.findIndex(item => item.name === itemName);
+            if (itemIndex > -1) {
+                producerCartTotal -= producerCart[itemIndex].price;
+                producerCart.splice(itemIndex, 1);
+                document.getElementById('producer-cart-total').innerText = producerCartTotal.toFixed(2);
+                updateProducerCartDisplay();
+                // Oculta el contenedor de PayPal de producción si el carrito está vacío
+                if (producerCart.length === 0) {
+                    document.getElementById('paypal-producer-button-container').style.display = 'none';
+                    document.getElementById('reservation-message').innerText = '';
+                }
+            }
+        }
+
+        // Función para actualizar la visualización del carrito de producción
+        function updateProducerCartDisplay() {
+            const producerCartItemsList = document.getElementById('producer-cart-items');
+            producerCartItemsList.innerHTML = '';
+            producerCart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} MXN (Fecha: ${item.date.toLocaleDateString()}) <button onclick="removeFromProducerCart('${item.name}')">X</button>`;
+                producerCartItemsList.appendChild(listItem);
+            });
+        }
+
+        // Funciones para alternar la visibilidad de los carritos
+        function toggleCart() {
+            const cartElement = document.getElementById('cart');
+            cartElement.style.display = cartElement.style.display === 'block' ? 'none' : 'block';
+            if (cartElement.style.display === 'block') {
+                // Si el carrito se abre, oculta el de producción
+                document.getElementById('producer-cart').style.display = 'none';
+            }
+        }
+
+        function toggleProducerCart() {
+            const producerCartElement = document.getElementById('producer-cart');
+            producerCartElement.style.display = producerCartElement.style.display === 'block' ? 'none' : 'block';
+            if (producerCartElement.style.display === 'block') {
+                // Si el carrito de producción se abre, oculta el principal
+                document.getElementById('cart').style.display = 'none';
+            }
+        }
+
+        // Función para descargar beats (se activaría después de un pago exitoso)
+        function downloadBeat(beatFile) {
+            alert(`Iniciando descarga de ${beatFile}. Gracias por tu compra!`);
+            const link = document.createElement('a');
+            link.href = beatFile;
+            link.download = beatFile;
+            document.body.appendChild(link); // Necesario para Firefox
+            link.click();
+            document.body.removeChild(link); // Limpiar
+        }
+
+        // *** Lógica de Pago para Servicios de Producción (Depósito) ***
+        function prepareProducerPayment() {
+            const dateInput = document.getElementById('producer-date').value;
+            const selectedService = document.getElementById('producer-select').value;
+
+            // Precios completos de los servicios
+            const fullPrices = {
+                "Mezcla & Masterización": 399.99,
+                "Mezcla, Masterización & Grabación de voces": 599.99,
+                "Sesión completa": 999.99
+            };
+            const fullPrice = fullPrices[selectedService];
+            const deposit = (fullPrice / 2).toFixed(2); // Calcula el 50% de depósito
+
+            const selectedDate = new Date(dateInput);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // Normalizar fecha de hoy a medianoche
+
+            if (!dateInput) {
+                alert('Por favor, selecciona una fecha para tu reserva.');
+                return;
+            }
+            if (selectedDate < today) {
+                alert('La fecha seleccionada no puede ser en el pasado. Por favor, elige una fecha futura.');
+                return;
+            }
+
+            // Añadir al carrito de producción (sobrescribe si ya hay uno)
+            addToProducerCart(selectedService, parseFloat(deposit), selectedDate);
+
+            // Mostrar el mensaje y el contenedor de botones de PayPal
+            document.getElementById('reservation-message').innerText = `Haz clic en el botón de PayPal para pagar el depósito de $${deposit} MXN.`;
+            document.getElementById('paypal-producer-button-container').style.display = 'block';
+
+            // Renderizar los botones de PayPal solo una vez
+            if (!producerPaypalButtonsRendered) {
+                paypal.Buttons({
+                    style: {
+                        layout: 'vertical',
+                        color:  'gold',
+                        shape:  'rect',
+                        label:  'paypal'
+                    },
+                    createOrder: function(data, actions) {
+                        // Re-obtener el valor del depósito para asegurar que es el más reciente
+                        const currentSelectedService = document.getElementById('producer-select').value;
+                        const currentFullPrice = fullPrices[currentSelectedService];
+                        const currentDeposit = (currentFullPrice / 2).toFixed(2);
+
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: currentDeposit,
+                                    currency_code: 'MXN' // MUY IMPORTANTE: Especificar la moneda
+                                },
+                                description: `Depósito para servicio de ${currentSelectedService} el ${selectedDate.toLocaleDateString()}`
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            // Este es el momento de confirmar la reserva y vaciar el carrito
+                            const paidService = producerCart[0] ? producerCart[0].name : selectedService;
+                            const paidDate = producerCart[0] ? producerCart[0].date.toLocaleDateString() : selectedDate.toLocaleDateString();
+                            const paidDeposit = producerCart[0] ? producerCart[0].price.toFixed(2) : deposit;
+
+                            document.getElementById('reservation-message').innerText =
+                                `✅ ¡Pago exitoso! Has apartado la fecha ${paidDate} para el servicio de ${paidService} con un depósito de $${paidDeposit} MXN. Te contactaremos pronto.`;
+                            alert('¡Pago de reserva exitoso! Revisa el mensaje en la página para más detalles.');
+
+                            // Limpiar el carrito de producción y ocultar PayPal
+                            producerCart.length = 0;
+                            producerCartTotal = 0;
+                            updateProducerCartDisplay();
+                            document.getElementById('paypal-producer-button-container').style.display = 'none';
+                        });
+                    },
+                    onCancel: function(data) {
+                        alert('Pago de reserva cancelado. Puedes intentar de nuevo.');
+                        document.getElementById('reservation-message').innerText = ''; // Limpiar mensaje si se cancela
+                        document.getElementById('paypal-producer-button-container').style.display = 'none'; // Ocultar botones de PayPal
+                    },
+                    onError: function(err) {
+                        console.error('Error de PayPal en reserva de producción:', err);
+                        alert('Ocurrió un error al procesar tu pago de reserva. Por favor, inténtalo de nuevo.');
+                        document.getElementById('reservation-message').innerText = ''; // Limpiar mensaje
+                        document.getElementById('paypal-producer-button-container').style.display = 'none'; // Ocultar botones
+                    }
+                }).render('#paypal-producer-button-container');
+                producerPaypalButtonsRendered = true; // Marcar como renderizado
+            }
+        }
+
+        // *** Lógica de Pago para Carrito Principal (Beats y Merch) ***
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito de compras está vacío. Agrega algunos beats o merch para proceder.');
+                // Opcional: Ocultar el carrito si está vacío y se intenta pagar
+                document.getElementById('cart').style.display = 'none';
+                return;
+            }
+
+            // Mostrar el contenedor de botones de PayPal para el carrito principal
+            document.getElementById('paypal-main-cart-button-container').style.display = 'block';
+
+            if (!mainCartPaypalButtonsRendered) {
+                paypal.Buttons({
+                    style: {
+                        layout: 'vertical',
+                        color:  'blue',
+                        shape:  'rect',
+                        label:  'paypal'
+                    },
+                    createOrder: function(data, actions) {
+                        // Crear los ítems para la orden de PayPal
+                        const items = cart.map(item => ({
+                            name: item.name,
+                            quantity: '1',
+                            unit_amount: {
+                                currency_code: 'MXN',
+                                value: item.price.toFixed(2)
+                            }
+                        }));
+
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: cartTotal.toFixed(2), // Total del carrito
+                                    currency_code: 'MXN',
+                                    breakdown: {
+                                        item_total: {
+                                            currency_code: 'MXN',
+                                            value: cartTotal.toFixed(2)
+                                        }
+                                    }
+                                },
+                                items: items // Lista de ítems en el carrito
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            alert('¡Pago de compras exitoso! Gracias por tu compra, ' + details.payer.name.given_name + '!');
+                            // Lógica post-pago: Vaciar el carrito y si son beats, mostrar descarga
+                            cart.forEach(item => {
+                                // Ejemplo: Si el ítem es un beat, activa el botón de descarga
+                                if (item.name.includes('Beat')) {
+                                    const beatId = item.name.split(' ')[0] + '_beat'; // DIDIDI_beat, Ramon_beat, FANTA_beat
+                                    const downloadBtn = document.getElementById(`download-${beatId}`);
+                                    if (downloadBtn) {
+                                        downloadBtn.style.display = 'inline-block'; // Muestra el botón de descarga
+                                    }
+                                }
+                            });
+
+                            cart.length = 0; // Vacía el array del carrito
+                            cartTotal = 0; // Reinicia el total
+                            document.getElementById('cart-count').innerText = 0;
+                            updateCartDisplay(); // Actualiza la visualización
+                            toggleCart(); // Cierra el carrito
+                            document.getElementById('paypal-main-cart-button-container').style.display = 'none'; // Oculta botones
+                        });
+                    },
+                    onCancel: function(data) {
+                        alert('Pago de compras cancelado.');
+                        document.getElementById('paypal-main-cart-button-container').style.display = 'none'; // Oculta botones
+                    },
+                    onError: function(err) {
+                        console.error('Error de PayPal en carrito principal:', err);
+                        alert('Ocurrió un error al procesar tu pago de compras. Por favor, inténtalo de nuevo.');
+                        document.getElementById('paypal-main-cart-button-container').style.display = 'none'; // Oculta botones
+                    }
+                }).render('#paypal-main-cart-button-container');
+                mainCartPaypalButtonsRendered = true; // Marcar como renderizado
+            }
+        }
+
+        // La función checkoutProducer() ya no es necesaria si reserveDateAndPay() maneja el pago.
+        // Si tienes otros usos para un "checkout" de producción que no sea la reserva inicial,
+        // entonces sí tendría sentido implementarla con su propia lógica de PayPal.
+        // Por ahora, la dejamos como un comentario para evitar confusiones.
+        /*
+        function checkoutProducer() {
+            // Esta función podría ser redundante si `prepareProducerPayment` ya activa el flujo de pago.
+            // Si la necesitas para otra cosa, aquí iría la lógica de PayPal para el carrito de producción.
+            alert("Proceso de pago para el carrito de producción (si es diferente a la reserva inicial).");
+        }
+        */
+    </script>
+</body>
+</html>
