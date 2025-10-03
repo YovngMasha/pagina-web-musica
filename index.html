@@ -459,6 +459,36 @@
         .image-container.no-hover.show-back .back { opacity: 1; }
         .image-container.no-hover.show-back .front { opacity: 0; }
 
+        /* ===== Selector de tallas vertical y compacto (solo MERCH) ===== */
+        #merch details.size-details > summary { cursor: pointer; color: var(--highlight-color); margin-top: 8px; }
+        #merch .size-container { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+        #merch .size-box { border: 2px solid var(--highlight-color); border-radius: 8px; padding: 10px; background: rgba(0,0,0,0.2); color: var(--light-text); }
+        #merch .size-box h4 { font-family: 'Permanent Marker', cursive; color: var(--highlight-color); margin: 0 0 6px 0; }
+        #merch .sizes { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+        #merch .sizes button { width: 80%; padding: 6px 0; background: none; border: 1px solid var(--highlight-color); color: var(--highlight-color); border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+        #merch .sizes button:hover { background: var(--highlight-color); color: var(--dark-background); }
+
+        /* ===== MERCH ajustes: cuadros más chicos y viewer ===== */
+        #merch .merch { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        #merch .merch-item { padding: 16px; }
+        #merch .image-container { max-width: 200px; margin: 0 auto; cursor: pointer; }
+        @media (max-width: 480px) {
+            #merch .image-container { max-width: 180px; }
+        }
+
+        /* Viewer (ampliación al hacer click) */
+        #viewer { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 9999; }
+        #viewer.open { display: flex; }
+        #viewer .viewer-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.8); }
+        #viewer .viewer-box { position: relative; width: min(90vw, 700px); aspect-ratio: 1 / 1; background: #000; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        #viewer .viewer-box img { position: absolute; inset: 0; margin: auto; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; transition: opacity 0.6s ease; display: block; }
+        #viewer .viewer-box img.back { opacity: 0; }
+        #viewer .viewer-box:hover img.front { opacity: 0; }
+        #viewer .viewer-box:hover img.back { opacity: 1; }
+
+        /* Cerrar hint */
+        #viewer .close-hint { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 0.9rem; opacity: 0.7; }
+
     </style>
 </head>
 <body>
@@ -620,22 +650,48 @@
             </div>
         </section>
 
+        
+        
         <section id="merch">
             <h2>Merch</h2>
             <p>Lleva el estilo de Yovng Masha contigo. Explora nuestra exclusiva colección de ropa y accesorios.</p>
             <div class="merch">
+                <!-- Playera Blessed -->
                 <div class="merch-item">
-  <div class="image-container">
-    <img src="blessed-shirt.jpeg" alt="BLESSED T-SHIRT Front" class="front">
-    <img src="blessed-shirt-back.jpeg" alt="BLESSED T-SHIRT Back" class="back">
-  </div>
-  <h3>BLESSED T-SHIRT</h3>
-  <p>Precio: $349.99 MXN</p>
-  <button onclick="addToCart('BLESSED T-SHIRT', 349.99)">Agregar al carrito</button>
-</div>
+                  <div class="image-container">
+                    <img src="blessed-shirt.jpeg" alt="BLESSED T-SHIRT Front" class="front">
+                    <img src="blessed-shirt-back.jpeg" alt="BLESSED T-SHIRT Back" class="back">
+                  </div>
+                  <h3>BLESSED T-SHIRT</h3>
+                  <p>Precio: $349.99 MXN</p>
+                  <button onclick="addToCart('BLESSED T-SHIRT', 349.99)">Agregar al carrito</button>
+                </div>
 
-</div>
+                <!-- Sudadera VDH GUN -->
+                <div class="merch-item">
+                  <div class="image-container">
+                    <img src="gunvdh-hoodie.jpeg" alt="VDH GUN HOODIE Front" class="front">
+                    <img src="gunvdh-hoodie-back.jpeg" alt="VDH GUN HOODIE Back" class="back">
+                  </div>
+                  <h3>VDH GUN HOODIE</h3>
+                  <p>Precio: $599.99 MXN</p>
+                  <button onclick="addToCart('VDH GUN HOODIE', 599.99)">Agregar al carrito</button>
+                </div>
+
+                <!-- Producto 3 de ejemplo -->
+                <div class="merch-item">
+                  <div class="image-container">
+                    <img src="producto3-front.jpeg" alt="Producto 3 Front" class="front">
+                    <img src="producto3-back.jpeg" alt="Producto 3 Back" class="back">
+                  </div>
+                  <h3>Producto 3 Ejemplo</h3>
+                  <p>Precio: $499.99 MXN</p>
+                  <button onclick="addToCart('Producto 3 Ejemplo', 499.99)">Agregar al carrito</button>
+                </div>
+            </div>
         </section>
+
+
 
         <section id="contacto">
             <h2>Contacto</h2>
@@ -711,6 +767,18 @@
         <p>© <span id="current-year"></span> Yovng Masha. Todos los derechos reservados.</p>
     </footer>
 
+
+    <!-- Viewer de imágenes merch -->
+    <div id="viewer" aria-hidden="true">
+        <div class="viewer-backdrop"></div>
+        <div class="viewer-box">
+            <img class="front" alt="Vista frontal ampliada">
+            <img class="back" alt="Vista trasera ampliada">
+            <div class="close-hint">Toca/clic fuera para cerrar • Esc para salir</div>
+        </div>
+    </div>
+
+
     
     <script src="https://www.paypal.com/sdk/js?client-id=AerGLNGHIHIp93TUu0plV6K8jO2q6SitOjisYDPUcB6kjeuqP7bXjnSQloHFkigHa5eoQod7436RStO-&currency=MXN">
         // NO colocar lógica aquí; este script solo carga PayPal
@@ -744,4 +812,51 @@
     </script>
 
 
-\n</body>\n</html>\n
+\n
+    <script>
+        // Visor de merch: abrir con clic, cerrar clic fuera o Esc
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewer = document.getElementById('viewer');
+            if (!viewer) return;
+            const viewerFront = viewer.querySelector('img.front');
+            const viewerBack = viewer.querySelector('img.back');
+            const backdrop = viewer.querySelector('.viewer-backdrop');
+            const box = viewer.querySelector('.viewer-box');
+
+            // Abrir viewer con las imágenes del item clickeado
+            document.querySelectorAll('#merch .image-container').forEach(ic => {
+                ic.addEventListener('click', () => {
+                    const f = ic.querySelector('img.front');
+                    const b = ic.querySelector('img.back');
+                    if (f) viewerFront.src = f.getAttribute('src');
+                    if (b) viewerBack.src = b.getAttribute('src');
+                    // Frente primero
+                    viewerFront.style.opacity = '1';
+                    viewerBack.style.opacity = '0';
+                    viewer.classList.add('open');
+                    viewer.setAttribute('aria-hidden', 'false');
+                }, { passive: true });
+            });
+
+            const closeViewer = () => {
+                viewer.classList.remove('open');
+                viewer.setAttribute('aria-hidden', 'true');
+            };
+            // Cerrar con clic fuera
+            backdrop.addEventListener('click', closeViewer, { passive: true });
+            // Cerrar con Esc
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeViewer();
+            });
+
+            // En móvil: tocar dentro del cuadro alterna frente/atrás
+            let touchBack = false;
+            box.addEventListener('click', () => {
+                touchBack = !touchBack;
+                viewerBack.style.opacity = touchBack ? '1' : '0';
+                viewerFront.style.opacity = touchBack ? '0' : '1';
+            }, { passive: true });
+        });
+    </script>
+
+</body>\n</html>\n
