@@ -3,195 +3,344 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo de Beats</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f3f3f3;
-    }
-    h1 {
-      margin-bottom: 20px;
-    }
-    .beat-card {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .beat-title {
-      font-size: 24px;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    .beat-info {
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-    .beat-info span {
-      display: inline-block;
-      margin-right: 6px;
-      font-weight: bold;
-    }
-    .audio-player {
-      margin-bottom: 10px;
-      width: 100%;
-    }
-    .actions {
-      margin-top: 10px;
-    }
-    .actions a {
-      margin-right: 10px;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      color: #ffffff;
-      font-size: 14px;
-    }
-    .actions a.buy {
-      background-color: #4CAF50;
-    }
-    .actions a.license {
-      background-color: #2196F3;
-    }
-    .license-content {
-      display: none;
-      margin-top: 10px;
-      font-size: 13px;
-      padding: 10px;
-      background-color: #efefef;
-      border-radius: 4px;
-    }
-  </style>
+  <title>Diego - Ecosistema Musical</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Framer Motion (optional for simple animations) -->
+  <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
 </head>
-<body>
-  <h1>Catálogo de Beats</h1>
-  <div id="beats-container"></div>
+<body class="bg-gray-50 font-sans leading-normal text-gray-900">
+  <!-- Header / Hero Section -->
+  <header id="hero" class="min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-indigo-700 to-purple-800 text-white">
+    <div class="px-4">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Revoluciona la música con un toque de magia futurista</h1>
+      <p class="text-lg md:text-2xl mb-8 max-w-2xl mx-auto">
+        Conectamos creatividad, tecnología y poesía en cada nota. Únete a un ecosistema donde las ideas vuelan y la innovación nunca duerme.
+      </p>
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+        <a href="#contacto" class="px-8 py-3 bg-white text-indigo-700 font-semibold rounded shadow hover:bg-gray-100 transition">Trabajemos</a>
+        <a href="#servicios" class="px-8 py-3 bg-transparent border border-white text-white font-semibold rounded shadow hover:bg-white hover:text-indigo-700 transition">Bookea ahora</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ecosistema Section -->
+  <section id="ecosistema" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">Nuestro Ecosistema</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- Card for each sub-brand -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold mb-2">GOD RECORDS</h3>
+          <p class="text-gray-600">La casa donde nacen los himnos atemporales y la energía divina vibra en cada track.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold mb-2">LA OBSEXION</h3>
+          <p class="text-gray-600">El laboratorio de ideas que transforman la obsesión creativa en obras de arte sonoras.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold mb-2">VDH CLUB</h3>
+          <p class="text-gray-600">Un espacio donde la comunidad vibra al ritmo de la vanguardia y las historias se mezclan con música.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold mb-2">STYLAZY</h3>
+          <p class="text-gray-600">Moda y actitud para quienes viven la vida a su propio ritmo, con estilo relajado e innovador.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold mb-2">ELABORATORY</h3>
+          <p class="text-gray-600">El corazón experimental donde fusionamos sonidos, conceptos y tecnología para crear lo inimaginable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lanzamientos Section -->
+  <section id="lanzamientos" class="py-20 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">Lanzamientos Recientes</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- Placeholder cards for launches -->
+        <div class="bg-gray-100 rounded-lg shadow p-6">
+          <div class="h-40 bg-gray-300 rounded mb-4"></div>
+          <h3 class="text-xl font-semibold mb-2">Proyecto Alfa</h3>
+          <p class="text-gray-600">Un viaje sonoro que te transporta a nuevas dimensiones.</p>
+        </div>
+        <div class="bg-gray-100 rounded-lg shadow p-6">
+          <div class="h-40 bg-gray-300 rounded mb-4"></div>
+          <h3 class="text-xl font-semibold mb-2">Sueños Invernales</h3>
+          <p class="text-gray-600">Melodías cálidas para noches frías, cargadas de nostalgia futurista.</p>
+        </div>
+        <div class="bg-gray-100 rounded-lg shadow p-6">
+          <div class="h-40 bg-gray-300 rounded mb-4"></div>
+          <h3 class="text-xl font-semibold mb-2">Ritmos de Acero</h3>
+          <p class="text-gray-600">Fusionamos tecnología y humanidad en un dancefloor sin fronteras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios Section -->
+  <section id="servicios" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">Servicios</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold mb-2">Producción Musical</h3>
+          <p class="text-gray-600">Transformamos tu visión en sonido con calidad mundial.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold mb-2">Management Artístico</h3>
+          <p class="text-gray-600">Impulsamos tu carrera con estrategias creativas y claridad empresarial.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold mb-2">Consultoría de Marca</h3>
+          <p class="text-gray-600">Diseñamos identidades sonoras y visuales que cuentan tu historia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beats Section (new) -->
+  <section id="beats" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Beats en Venta</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- Beat: F1 -->
+        <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col">
+          <h3 class="text-xl font-semibold mb-2">F1</h3>
+          <p class="text-gray-600 mb-4"><strong>BPM:</strong> 73&nbsp;&nbsp;|&nbsp;&nbsp;<strong>Tonalidad:</strong> Do menor&nbsp;&nbsp;|&nbsp;&nbsp;<strong>Mood:</strong> Drill</p>
+          <audio controls class="w-full mb-4">
+            <source src="F1.mp3" type="audio/mpeg" />
+            Tu navegador no soporta el elemento de audio.
+          </audio>
+          <!-- Compra -->
+          <a href="https://wa.me/524272999317?text=Hola%20me%20interesa%20el%20beat%20F1" class="block text-center px-4 py-2 bg-indigo-700 text-white rounded shadow hover:bg-indigo-600 transition mb-4">Comprar – $300 MXN</a>
+          <!-- Licencias -->
+          <div class="space-y-2 mt-auto">
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">MP3 Lease – $300.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 2,000 copias</li>
+                <li>250,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">WAV Lease – $500.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 3,000 copias</li>
+                <li>500,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">Premium – $800.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 10,000 copias</li>
+                <li>1,000,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+        <!-- Beat: DIDIDI -->
+        <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col">
+          <h3 class="text-xl font-semibold mb-2">DIDIDI</h3>
+          <p class="text-gray-600 mb-4"><strong>BPM:</strong> 70&nbsp;&nbsp;|&nbsp;&nbsp;<strong>Tonalidad:</strong> Si♭ mayor&nbsp;&nbsp;|&nbsp;&nbsp;<strong>Mood:</strong> Trap</p>
+          <audio controls class="w-full mb-4">
+            <source src="DIDIDI.mp3" type="audio/mpeg" />
+            Tu navegador no soporta el elemento de audio.
+          </audio>
+          <a href="https://wa.me/524272999317?text=Hola%20me%20interesa%20el%20beat%20DIDIDI" class="block text-center px-4 py-2 bg-indigo-700 text-white rounded shadow hover:bg-indigo-600 transition mb-4">Comprar – $300 MXN</a>
+          <div class="space-y-2 mt-auto">
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">MP3 Lease – $300.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 2,000 copias</li>
+                <li>250,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">WAV Lease – $500.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 3,000 copias</li>
+                <li>500,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">Premium – $800.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 10,000 copias</li>
+                <li>1,000,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+        <!-- Beat: 768 -->
+        <div class="bg-gray-100 rounded-lg shadow p-6 flex flex-col">
+          <h3 class="text-xl font-semibold mb-2">768</h3>
+          <p class="text-gray-600 mb-4"><strong>BPM:</strong> 113&nbsp;&nbsp;|&nbsp;&nbsp;<strong>Tonalidad:</strong> La mayor&nbsp;&nbsp;|&nbsp;&nbsp;<strong>Mood:</strong> Hip Hop</p>
+          <audio controls class="w-full mb-4">
+            <source src="768.mp3" type="audio/mpeg" />
+            Tu navegador no soporta el elemento de audio.
+          </audio>
+          <a href="https://wa.me/524272999317?text=Hola%20me%20interesa%20el%20beat%20768" class="block text-center px-4 py-2 bg-indigo-700 text-white rounded shadow hover:bg-indigo-600 transition mb-4">Comprar – $300 MXN</a>
+          <div class="space-y-2 mt-auto">
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">MP3 Lease – $300.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 2,000 copias</li>
+                <li>250,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">WAV Lease – $500.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 3,000 copias</li>
+                <li>500,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+            <details class="bg-white rounded p-3">
+              <summary class="font-semibold cursor-pointer">Premium – $800.00</summary>
+              <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                <li>Usada para grabación musical</li>
+                <li>Distribuye hasta 10,000 copias</li>
+                <li>1,000,000 reproducciones en línea</li>
+                <li>1 video musical</li>
+                <li>Presentaciones en vivo con fines de lucro</li>
+                <li>Derechos de radiodifusión (2 estaciones)</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto Section -->
+  <section id="contacto" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-center text-3xl md:text-4xl font-bold mb-10">Contacto</h2>
+      <form class="max-w-2xl mx-auto bg-gray-100 p-8 rounded-lg shadow">
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-2" for="nombre">Nombre</label>
+          <input id="nombre" type="text" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Tu nombre" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-2" for="email">Correo Electrónico</label>
+          <input id="email" type="email" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="tucorreo@example.com" />
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 mb-2" for="mensaje">Mensaje</label>
+          <textarea id="mensaje" rows="5" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="px-8 py-3 bg-indigo-700 text-white font-semibold rounded shadow hover:bg-indigo-600 transition">
+            Enviar Mensaje
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Floating Chat Widget -->
+  <div id="chatButton" class="fixed bottom-4 right-4 bg-indigo-700 text-white p-4 rounded-full shadow-lg cursor-pointer">
+    <!-- Chat icon (using a simple SVG) -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  </div>
+  <div id="chatWindow" class="fixed bottom-20 right-4 w-72 sm:w-80 max-h-96 bg-white border rounded-lg shadow-lg flex flex-col overflow-hidden hidden">
+    <div class="bg-indigo-700 text-white p-4">
+      <h4 class="text-lg font-semibold">Asistente</h4>
+    </div>
+    <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-2">
+      <div class="text-sm text-gray-700">¡Hola! ¿En qué puedo ayudarte?</div>
+    </div>
+    <div class="p-3 border-t">
+      <div class="flex items-center">
+        <input id="chatInput" type="text" class="flex-1 px-2 py-1 border rounded-l focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Escribe tu mensaje..." />
+        <button id="chatSend" class="bg-indigo-700 text-white px-3 py-1 rounded-r">Enviar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Lista de beats con los datos proporcionados
-    const beats = [
-      {
-        title: 'F1',
-        bpm: 73,
-        key: 'Do menor',
-        mood: 'Drill',
-        price: 300,
-        audio: 'F1.mp3'
-      },
-      {
-        title: 'DIDIDI',
-        bpm: 70,
-        key: 'Si bemol mayor',
-        mood: 'Trap',
-        price: 300,
-        audio: 'DIDIDI.mp3'
-      },
-      {
-        title: '768',
-        bpm: 113,
-        key: 'La mayor',
-        mood: 'Hip Hop',
-        price: 300,
-        audio: '768.mp3'
+    // Chat widget toggling
+    const chatButton = document.getElementById('chatButton');
+    const chatWindow = document.getElementById('chatWindow');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSend');
+
+    chatButton.addEventListener('click', () => {
+      chatWindow.classList.toggle('hidden');
+    });
+
+    function appendMessage(content, sender = 'user') {
+      const msgDiv = document.createElement('div');
+      // Determine alignment and color based on sender
+      if (sender === 'user') {
+        msgDiv.classList.add('text-sm', 'text-indigo-700', 'text-right', 'mt-1');
+      } else {
+        msgDiv.classList.add('text-sm', 'text-gray-700', 'text-left', 'mt-1');
       }
-    ];
+      msgDiv.textContent = content;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-    // Número de WhatsApp para la compra
-    const whatsappNumber = '4272999317';
+    function simulateAssistantResponse(userText) {
+      // Simulate an assistant response after a short delay.
+      setTimeout(() => {
+        // Simple placeholder logic
+        const response = 'Gracias por tu mensaje. Pronto te responderé.';
+        appendMessage(response, 'bot');
+      }, 1000);
+    }
 
-    // Contenedor donde se insertarán los beats
-    const container = document.getElementById('beats-container');
+    chatSend.addEventListener('click', () => {
+      const text = chatInput.value.trim();
+      if (text) {
+        appendMessage(text, 'user');
+        chatInput.value = '';
+        simulateAssistantResponse(text);
+      }
+    });
 
-    // Crear tarjetas de beat dinámicamente
-    beats.forEach((beat, index) => {
-      const card = document.createElement('div');
-      card.className = 'beat-card';
-
-      // Título del beat
-      const title = document.createElement('div');
-      title.className = 'beat-title';
-      title.textContent = beat.title;
-
-      // Información del beat
-      const info = document.createElement('div');
-      info.className = 'beat-info';
-      info.innerHTML =
-        '<span>BPM:</span>' + beat.bpm +
-        ' <span>Tonalidad:</span>' + beat.key +
-        ' <span>Mood:</span>' + beat.mood +
-        ' <span>Precio:</span>$' + beat.price;
-
-      // Reproductor de audio
-      const audio = document.createElement('audio');
-      audio.className = 'audio-player';
-      audio.controls = true;
-      const source = document.createElement('source');
-      source.src = beat.audio;
-      source.type = 'audio/mpeg';
-      audio.appendChild(source);
-
-      // Sección de acciones (comprar y ver licencias)
-      const actions = document.createElement('div');
-      actions.className = 'actions';
-
-      // Botón de compra por WhatsApp
-      const buyLink = document.createElement('a');
-      buyLink.className = 'buy';
-      buyLink.href = 'https://wa.me/52' + whatsappNumber + '?text=Hola,%20quiero%20comprar%20el%20beat%20' + encodeURIComponent(beat.title);
-      buyLink.target = '_blank';
-      buyLink.textContent = 'Comprar por WhatsApp';
-
-      // Botón para ver licencias
-      const licenseButton = document.createElement('a');
-      licenseButton.className = 'license';
-      licenseButton.href = '#';
-      licenseButton.textContent = 'Licencias';
-      licenseButton.onclick = function(e) {
-        e.preventDefault();
-        const content = card.querySelector('.license-content');
-        content.style.display = content.style.display === 'none' ? 'block' : 'none';
-      };
-
-      actions.appendChild(buyLink);
-      actions.appendChild(licenseButton);
-
-      // Contenido de licencias (oculto por defecto)
-      const licenseContent = document.createElement('div');
-      licenseContent.className = 'license-content';
-      // Información de licencias detallada (traducida al español)
-      licenseContent.innerHTML = `
-        <strong>MP3 Lease (250k Máx) – $300.00</strong><br>
-        Usada para grabación musical<br>
-        Distribuye hasta 2,000 copias<br>
-        250,000 reproducciones en línea<br>
-        1 video musical<br>
-        Presentaciones en vivo con fines de lucro<br>
-        Derechos de radiodifusión (2 estaciones)<br><br>
-        <strong>WAV Lease (500k Máx) – $500.00</strong><br>
-        Usada para grabación musical<br>
-        Distribuye hasta 3,000 copias<br>
-        500,000 reproducciones en línea<br>
-        1 video musical<br>
-        Presentaciones en vivo con fines de lucro<br>
-        Derechos de radiodifusión (2 estaciones)<br><br>
-        <strong>Premium (1M Máx) – $800.00</strong><br>
-        Usada para grabación musical<br>
-        Distribuye hasta 10,000 copias<br>
-        1,000,000 reproducciones en línea<br>
-        1 video musical<br>
-        Presentaciones en vivo con fines de lucro<br>
-        Derechos de radiodifusión (2 estaciones)
-      `;
-
-      // Construir la tarjeta
-      card.appendChild(title);
-      card.appendChild(info);
-      card.appendChild(audio);
-      card.appendChild(actions);
-      card.appendChild(licenseContent);
-
-      container.appendChild(card);
+    chatInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        chatSend.click();
+      }
     });
   </script>
 </body>
