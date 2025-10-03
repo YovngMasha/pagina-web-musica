@@ -707,362 +707,47 @@
         <p>© <span id="current-year"></span> Yovng Masha. Todos los derechos reservados.</p>
     </footer>
 
+    
     <script src="https://www.paypal.com/sdk/js?client-id=AerGLNGHIHIp93TUu0plV6K8jO2q6SitOjisYDPUcB6kjeuqP7bXjnSQloHFkigHa5eoQod7436RStO-&currency=MXN">
-        // Enable image swap on devices without hover
-        document.addEventListener('DOMContentLoaded', () => {
-            const supportsHover = window.matchMedia('(hover: hover)').matches;
-            const containers = document.querySelectorAll('.image-container');
-            if (!supportsHover) {
-                containers.forEach((ic) => {
-                    ic.classList.add('no-hover');
-                    let showingBack = false;
-                    // Auto-rotate every 2.5s
-                    const interval = setInterval(() => {
-                        showingBack = !showingBack;
-                        ic.classList.toggle('show-back', showingBack);
-                    }, 2500);
-                    // Tap to toggle
-                    ic.addEventListener('click', () => {
-                        showingBack = !showingBack;
-                        ic.classList.toggle('show-back', showingBack);
-                    }, { passive: true });
-                    // Optional: stop auto-rotate while interacting
-                    ic.addEventListener('pointerdown', () => {
-                        clearInterval(interval);
-                    }, { passive: true });
-                });
-            }
-        });
-
+        // NO colocar lógica aquí; este script solo carga PayPal
     </script>
     <script>
-        const cart = []; // Almacena ítems del carrito principal (beats, merch)
-        let cartTotal = 0;
-        const producerCart = []; // Almacena ítems del carrito de producción (servicios)
-        let producerCartTotal = 0;
-        let producerPaypalButtonsRendered = false; // Bandera para PayPal de producción
-        let mainCartPaypalButtonsRendered = false; // Bandera para PayPal del carrito principal
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Actualizar el año en el footer automáticamente
-            document.getElementById('current-year').innerText = new Date().getFullYear();
-        });
-
-        // Función para añadir ítems al carrito principal (beats y merch)
-        function addToCart(itemName, itemPrice) {
-            cart.push({ name: itemName, price: itemPrice });
-            cartTotal += itemPrice;
-            document.getElementById('cart-count').innerText = cart.length;
-            document.getElementById('cart-total').innerText = cartTotal.toFixed(2);
-            updateCartDisplay(); // Actualiza la visualización del carrito
-
-            // Muestra una alerta simple
-            alert(`\"${itemName}\" agregado al carrito.`);
-        }
-
-        // Función para eliminar ítems del carrito principal
-        function removeFromCart(itemName, itemPrice) {
-            const itemIndex = cart.findIndex(item => item.name === itemName && item.price === itemPrice);
-            if (itemIndex > -1) {
-                cartTotal -= itemPrice;
-                cart.splice(itemIndex, 1);
-                document.getElementById('cart-count').innerText = cart.length;
-                document.getElementById('cart-total').innerText = cartTotal.toFixed(2);
-                updateCartDisplay(); // Refresca la visualización del carrito
-                // Si el carrito queda vacío y el botón de PayPal está visible, lo oculta
-                if (cart.length === 0 && document.getElementById('paypal-main-cart-button-container').style.display === 'block') {
-                    document.getElementById('paypal-main-cart-button-container').style.display = 'none';
-                }
-            }
-        }
-
-        // Función para actualizar la visualización del carrito principal
-        function updateCartDisplay() {
-            const cartItemsList = document.getElementById('cart-items');
-            cartItemsList.innerHTML = ''; // Limpia la lista actual
-            cart.forEach(item => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} MXN <button onclick=\"removeFromCart('${item.name}', ${item.price})\">X</button>`;
-                cartItemsList.appendChild(listItem);
-            });
-        }
-
-        // Función para añadir servicios al carrito de producción
-        function addToProducerCart(itemName, itemPrice, selectedDate) {
-            // Limpiamos el carrito de producción antes de añadir un nuevo servicio
-            // porque generalmente solo se reserva un servicio a la vez.
-            producerCart.length = 0;
-            producerCartTotal = 0;
-
-            producerCart.push({ name: itemName, price: itemPrice, date: selectedDate });
-            producerCartTotal += itemPrice;
-            document.getElementById('producer-cart-total').innerText = producerCartTotal.toFixed(2);
-            updateProducerCartDisplay(); // Actualiza la visualización del carrito de producción
-        }
-
-        // Función para eliminar ítems del carrito de producción (aunque se espera que solo haya uno)
-        function removeFromProducerCart(itemName) {
-            const itemIndex = producerCart.findIndex(item => item.name === itemName);
-            if (itemIndex > -1) {
-                producerCartTotal -= producerCart[itemIndex].price;
-                producerCart.splice(itemIndex, 1);
-                document.getElementById('producer-cart-total').innerText = producerCartTotal.toFixed(2);
-                updateProducerCartDisplay();
-                // Oculta el contenedor de PayPal de producción si el carrito está vacío
-                if (producerCart.length === 0) {
-                    document.getElementById('paypal-producer-button-container').style.display = 'none';
-                    document.getElementById('reservation-message').innerText = '';
-                }
-            }
-        }
-
-        // Función para actualizar la visualización del carrito de producción
-        function updateProducerCartDisplay() {
-            const producerCartItemsList = document.getElementById('producer-cart-items');
-            producerCartItemsList.innerHTML = '';
-            producerCart.forEach(item => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `${item.name} - $${item.price.toFixed(2)} MXN (Fecha: ${item.date.toLocaleDateString()}) <button onclick=\"removeFromProducerCart('${item.name}')\">X</button>`;
-                producerCartItemsList.appendChild(listItem);
-            });
-        }
-
-        // Funciones para alternar la visibilidad de los carritos
-        function toggleCart() {
-            const cartElement = document.getElementById('cart');
-            cartElement.style.display = cartElement.style.display === 'block' ? 'none' : 'block';
-            if (cartElement.style.display === 'block') {
-                // Si el carrito se abre, oculta el de producción
-                document.getElementById('producer-cart').style.display = 'none';
-            }
-        }
-
-        function toggleProducerCart() {
-            const producerCartElement = document.getElementById('producer-cart');
-            producerCartElement.style.display = producerCartElement.style.display === 'block' ? 'none' : 'block';
-            if (producerCartElement.style.display === 'block') {
-                // Si el carrito de producción se abre, oculta el principal
-                document.getElementById('cart').style.display = 'none';
-            }
-        }
-
-        // Función para descargar beats (se activaría después de un pago exitoso)
-        function downloadBeat(beatFile) {
-            alert(`Iniciando descarga de ${beatFile}. Gracias por tu compra!`);
-            const link = document.createElement('a');
-            link.href = beatFile;
-            link.download = beatFile;
-            document.body.appendChild(link); // Necesario para Firefox
-            link.click();
-            document.body.removeChild(link); // Limpiar
-        }
-
-        // *** Lógica de Pago para Servicios de Producción (Depósito) ***
-        function prepareProducerPayment() {
-            const dateInput = document.getElementById('producer-date').value;
-            const selectedService = document.getElementById('producer-select').value;
-
-            // Precios completos de los servicios
-            const fullPrices = {
-                "Mezcla & Masterización": 399.99,
-                "Mezcla, Masterización & Grabación de voces": 599.99,
-                "Sesión completa": 999.99
-            };
-            const fullPrice = fullPrices[selectedService];
-            const deposit = (fullPrice / 2).toFixed(2); // Calcula el 50% de depósito
-
-            const selectedDate = new Date(dateInput);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0); // Normalizar fecha de hoy a medianoche
-
-            if (!dateInput) {
-                alert('Por favor, selecciona una fecha para tu reserva.');
-                return;
-            }
-            if (selectedDate < today) {
-                alert('La fecha seleccionada no puede ser en el pasado. Por favor, elige una fecha futura.');
-                return;
-            }
-
-            // Añadir al carrito de producción (sobrescribe si ya hay uno)
-            addToProducerCart(selectedService, parseFloat(deposit), selectedDate);
-
-            // Mostrar el mensaje y el contenedor de botones de PayPal
-            document.getElementById('reservation-message').innerText = `Haz clic en el botón de PayPal para pagar el depósito de $${deposit} MXN.`;
-            document.getElementById('paypal-producer-button-container').style.display = 'block';
-
-            // Renderizar los botones de PayPal solo una vez
-            if (!producerPaypalButtonsRendered) {
-                paypal.Buttons({
-                    style: {
-                        layout: 'vertical',
-                        color:  'gold',
-                        shape:  'rect',
-                        label:  'paypal'
-                    },
-                    createOrder: function(data, actions) {
-                        // Re-obtener el valor del depósito para asegurar que es el más reciente
-                        const currentSelectedService = document.getElementById('producer-select').value;
-                        const currentFullPrice = fullPrices[currentSelectedService];
-                        const currentDeposit = (currentFullPrice / 2).toFixed(2);
-
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: currentDeposit,
-                                    currency_code: 'MXN' // MUY IMPORTANTE: Especificar la moneda
-                                },
-                                description: `Depósito para servicio de ${currentSelectedService} el ${selectedDate.toLocaleDateString()}`
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            // Este es el momento de confirmar la reserva y vaciar el carrito
-                            const paidService = producerCart[0] ? producerCart[0].name : selectedService;
-                            const paidDate = producerCart[0] ? producerCart[0].date.toLocaleDateString() : selectedDate.toLocaleDateString();
-                            const paidDeposit = producerCart[0] ? producerCart[0].price.toFixed(2) : deposit;
-
-                            document.getElementById('reservation-message').innerText =
-                                `✅ ¡Pago exitoso! Has apartado la fecha ${paidDate} para el servicio de ${paidService} con un depósito de $${paidDeposit} MXN. Te contactaremos pronto.`;
-                            alert('¡Pago de reserva exitoso! Revisa el mensaje en la página para más detalles.');
-
-                            // Limpiar el carrito de producción y ocultar PayPal
-                            producerCart.length = 0;
-                            producerCartTotal = 0;
-                            updateProducerCartDisplay();
-                            document.getElementById('paypal-producer-button-container').style.display = 'none';
-                        });
-                    },
-                    onCancel: function(data) {
-                        alert('Pago de reserva cancelado. Puedes intentar de nuevo.');
-                        document.getElementById('reservation-message').innerText = ''; // Limpiar mensaje si se cancela
-                        document.getElementById('paypal-producer-button-container').style.display = 'none'; // Ocultar botones de PayPal
-                    },
-                    onError: function(err) {
-                        console.error('Error de PayPal en reserva de producción:', err);
-                        alert('Ocurrió un error al procesar tu pago de reserva. Por favor, inténtalo de nuevo.');
-                        document.getElementById('reservation-message').innerText = ''; // Limpiar mensaje
-                        document.getElementById('paypal-producer-button-container').style.display = 'none'; // Ocultar botones
-                    }
-                }).render('#paypal-producer-button-container');
-                producerPaypalButtonsRendered = true; // Marcar como renderizado
-            }
-        }
-
-        // *** Lógica de Pago para Carrito Principal (Beats y Merch) ***
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Tu carrito de compras está vacío. Agrega algunos beats o merch para proceder.');
-                // Opcional: Ocultar el carrito si está vacío y se intenta pagar
-                document.getElementById('cart').style.display = 'none';
-                return;
-            }
-
-            // Mostrar el contenedor de botones de PayPal para el carrito principal
-            document.getElementById('paypal-main-cart-button-container').style.display = 'block';
-
-            if (!mainCartPaypalButtonsRendered) {
-                paypal.Buttons({
-                    style: {
-                        layout: 'vertical',
-                        color:  'blue',
-                        shape:  'rect',
-                        label:  'paypal'
-                    },
-                    createOrder: function(data, actions) {
-                        // Crear los ítems para la orden de PayPal
-                        const items = cart.map(item => ({
-                            name: item.name,
-                            quantity: '1',
-                            unit_amount: {
-                                currency_code: 'MXN',
-                                value: item.price.toFixed(2)
-                            }
-                        }));
-
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: cartTotal.toFixed(2), // Total del carrito
-                                    currency_code: 'MXN',
-                                    breakdown: {
-                                        item_total: {
-                                            currency_code: 'MXN',
-                                            value: cartTotal.toFixed(2)
-                                        }
-                                    }
-                                },
-                                items: items // Lista de ítems en el carrito
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            alert('¡Pago de compras exitoso! Gracias por tu compra, ' + details.payer.name.given_name + '!');
-                            // Lógica post-pago: Vaciar el carrito y si son beats, mostrar descarga
-                            cart.forEach(item => {
-                                // Ejemplo: Si el ítem es un beat, activa el botón de descarga
-                                if (item.name.includes('Beat')) {
-                                    const beatId = item.name.split(' ')[0] + '_beat'; // DIDIDI_beat, Ramon_beat, FANTA_beat
-                                    const downloadBtn = document.getElementById(`download-${beatId}`);
-                                    if (downloadBtn) {
-                                        downloadBtn.style.display = 'inline-block'; // Muestra el botón de descarga
-                                    }
-                                }
-                            });
-
-                            cart.length = 0; // Vacía el array del carrito
-                            cartTotal = 0; // Reinicia el total
-                            document.getElementById('cart-count').innerText = 0;
-                            updateCartDisplay(); // Actualiza la visualización
-                            toggleCart(); // Cierra el carrito
-                            document.getElementById('paypal-main-cart-button-container').style.display = 'none'; // Oculta botones
-                        });
-                    },
-                    onCancel: function(data) {
-                        alert('Pago de compras cancelado.');
-                        document.getElementById('paypal-main-cart-button-container').style.display = 'none'; // Oculta botones
-                    },
-                    onError: function(err) {
-                        console.error('Error de PayPal en carrito principal:', err);
-                        alert('Ocurrió un error al procesar tu pago de compras. Por favor, inténtalo de nuevo.');
-                        document.getElementById('paypal-main-cart-button-container').style.display = 'none'; // Oculta botones
-                    }
-                }).render('#paypal-main-cart-button-container');
-                mainCartPaypalButtonsRendered = true; // Marcar como renderizado
-            }
-        }
-
-        // La función checkoutProducer() ya no es necesaria si reserveDateAndPay() maneja el pago.
-        // Si tienes otros usos para un \"checkout\" de producción que no sea la reserva inicial,
-        // entonces sí tendría sentido implementarla con su propia lógica de PayPal.
-        // Por ahora, la dejamos como un comentario para evitar confusiones.
-        /*\n        function checkoutProducer() {\n            // Esta función podría ser redundante si `prepareProducerPayment` ya activa el flujo de pago.\n            // Si la necesitas para otra cosa, aquí iría la lógica de PayPal para el carrito de producción.\n            alert(\"Proceso de pago para el carrito de producción (si es diferente a la reserva inicial).\");\n        }\n        */\n    
-        // Enable image swap on devices without hover
+        // Manejo de imágenes frente/atrás
         document.addEventListener('DOMContentLoaded', () => {
             const supportsHover = window.matchMedia('(hover: hover)').matches;
             const containers = document.querySelectorAll('.image-container');
-            if (!supportsHover) {
-                containers.forEach((ic) => {
-                    ic.classList.add('no-hover');
-                    let showingBack = false;
-                    // Auto-rotate every 2.5s
-                    const interval = setInterval(() => {
-                        showingBack = !showingBack;
-                        ic.classList.toggle('show-back', showingBack);
-                    }, 2500);
-                    // Tap to toggle
-                    ic.addEventListener('click', () => {
-                        showingBack = !showingBack;
-                        ic.classList.toggle('show-back', showingBack);
-                    }, { passive: true });
-                    // Optional: stop auto-rotate while interacting
-                    ic.addEventListener('pointerdown', () => {
-                        clearInterval(interval);
-                    }, { passive: true });
-                });
-            }
-        });
 
-    </script>\n</body>\n</html>\n
+            containers.forEach((ic) => {
+                const front = ic.querySelector('.front');
+                const back  = ic.querySelector('.back');
+
+                // Estado inicial: frente visible
+                if (front) front.style.opacity = '1';
+                if (back)  back.style.opacity  = '0';
+                ic.classList.remove('show-back'); // por si quedó de una versión anterior
+                ic.classList.add('no-hover');     // forzamos control por JS en móvil
+
+                // En dispositivos sin hover (móvil/tablet), usar tap para alternar
+                if (!supportsHover) {
+                    let showingBack = false;
+
+                    const toggle = () => {
+                        showingBack = !showingBack;
+                        if (showingBack) {
+                            if (front) front.style.opacity = '0';
+                            if (back)  back.style.opacity  = '1';
+                            ic.classList.add('show-back');
+                        } else {
+                            if (front) front.style.opacity = '1';
+                            if (back)  back.style.opacity  = '0';
+                            ic.classList.remove('show-back');
+                        }
+                    };
+
+                    ic.addEventListener('click', toggle, { passive: true });
+                    ic.addEventListener('touchend', toggle, { passive: true });
+                }
+            });
+        });
+    </script>
+\n</body>\n</html>\n
